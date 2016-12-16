@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.zjf.weike.R;
+import com.zjf.weike.presenter.LoginPresenter;
+import com.zjf.weike.view.viewimp.LoginViewImp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginViewImp {
 
 
     @BindView(R.id.toolbar)
@@ -65,5 +67,15 @@ public class LoginActivity extends BaseActivity {
             case R.id.img_login_qq:
                 break;
         }
+    }
+
+    @Override
+    public LoginPresenter create() {
+        return new LoginPresenter();
+    }
+
+    @Override
+    public void showError(String error) {
+
     }
 }

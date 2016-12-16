@@ -3,6 +3,7 @@
           package="com.zjf.weike">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -34,7 +35,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".view.activity.ResetPasswordActivity"
+            android:name=".view.activity.ResetPDataActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".view.activity.ReGetPasswordActivity">

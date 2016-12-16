@@ -1,8 +1,10 @@
 package com.zjf.weike.view.activity;
 
 import com.zjf.weike.R;
+import com.zjf.weike.presenter.RegisterPresenter;
+import com.zjf.weike.view.viewimp.RegisterViewImp;
 
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterViewImp {
 
 
     @Override
@@ -18,5 +20,10 @@ public class RegisterActivity extends BaseActivity {
     @Override
     public void loaderData() {
 
+    }
+
+    @Override
+    public RegisterPresenter create() {
+        return new RegisterPresenter();
     }
 }

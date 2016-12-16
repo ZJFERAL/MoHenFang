@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.view.WindowManager;
 
 import com.zjf.weike.R;
+import com.zjf.weike.presenter.SplashPresenter;
 import com.zjf.weike.view.viewimp.SplashViewImp;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SplashActivity extends BaseActivity implements SplashViewImp{
+public class SplashActivity extends BaseActivity<SplashPresenter> implements SplashViewImp{
 
     @Override
     public void initVariables() {
@@ -44,5 +45,10 @@ public class SplashActivity extends BaseActivity implements SplashViewImp{
     @Override
     public void showError(String error) {
 
+    }
+
+    @Override
+    public SplashPresenter create() {
+        return new SplashPresenter();
     }
 }
