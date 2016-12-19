@@ -6,6 +6,7 @@ import android.view.WindowManager;
 
 import com.zjf.weike.R;
 import com.zjf.weike.presenter.GuidePresenter;
+import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.GuideViewImp;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class GuideActivity extends BaseActivity<GuidePresenter> implements GuideViewImp {
+public class GuideActivity extends MVPActivity<GuidePresenter> implements GuideViewImp {
 
     private List<Fragment> mFragments;
 

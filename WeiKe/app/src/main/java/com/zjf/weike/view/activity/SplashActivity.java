@@ -5,12 +5,13 @@ import android.view.WindowManager;
 
 import com.zjf.weike.R;
 import com.zjf.weike.presenter.SplashPresenter;
+import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.SplashViewImp;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SplashActivity extends BaseActivity<SplashPresenter> implements SplashViewImp{
+public class SplashActivity extends MVPActivity<SplashPresenter> implements SplashViewImp{
 
     @Override
     public void initVariables() {

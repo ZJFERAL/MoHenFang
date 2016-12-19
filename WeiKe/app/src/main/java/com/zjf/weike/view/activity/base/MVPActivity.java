@@ -1,15 +1,14 @@
-package com.zjf.weike.view.activity;
+package com.zjf.weike.view.activity.base;
 
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 
 import com.zjf.weike.presenter.base.BasePresenter;
 import com.zjf.weike.presenter.base.PresenterFactory;
 import com.zjf.weike.presenter.base.PresenterLoader;
 
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements LoaderManager.LoaderCallbacks<T>,PresenterFactory<T> {
+public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity implements LoaderManager.LoaderCallbacks<T>,PresenterFactory<T> {
 
     protected T mPresenter;
 
@@ -17,25 +16,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportLoaderManager().initLoader(0, null, this);
-        initVariables();
-        initView();
-        loaderData();
     }
 
-    /**
-     * 做初始化方面的工作,比如接收上一个界面的Intent
-     */
-    public abstract void initVariables();
-
-    /**
-     * 初始化控件
-     */
-    public abstract void initView();
-
-    /**
-     * 加载数据
-     */
-    public abstract void loaderData();
 
     @Override
     public Loader<T> onCreateLoader(int id, Bundle args) {

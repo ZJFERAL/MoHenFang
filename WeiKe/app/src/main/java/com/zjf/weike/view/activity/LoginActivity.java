@@ -9,13 +9,14 @@ import android.widget.EditText;
 
 import com.zjf.weike.R;
 import com.zjf.weike.presenter.LoginPresenter;
+import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.LoginViewImp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginViewImp {
+public class LoginActivity extends MVPActivity<LoginPresenter> implements LoginViewImp {
 
 
     @BindView(R.id.toolbar)
