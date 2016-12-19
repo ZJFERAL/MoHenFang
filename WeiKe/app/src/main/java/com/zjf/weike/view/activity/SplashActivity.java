@@ -11,11 +11,11 @@ import com.zjf.weike.view.viewimp.SplashViewImp;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SplashActivity extends MVPActivity<SplashPresenter> implements SplashViewImp{
+public class SplashActivity extends MVPActivity<SplashPresenter> implements SplashViewImp {
 
     @Override
     public void initVariables() {
-
+        super.initVariables();
     }
 
     @Override
@@ -32,9 +32,9 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
             }
-        },1500);
+        }, 1500);
 
     }
 

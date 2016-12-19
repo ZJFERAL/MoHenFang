@@ -24,6 +24,7 @@ public class GuideActivity extends MVPActivity<GuidePresenter> implements GuideV
 
     @Override
     public void initVariables() {
+        super.initVariables();
         mFragments = new ArrayList<>();
     }
 

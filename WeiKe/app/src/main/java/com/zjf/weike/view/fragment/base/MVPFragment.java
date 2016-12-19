@@ -1,4 +1,4 @@
-package com.zjf.weike.view.activity.base;
+package com.zjf.weike.view.fragment.base;
 
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
@@ -8,18 +8,33 @@ import com.zjf.weike.presenter.base.BasePresenter;
 import com.zjf.weike.presenter.base.PresenterFactory;
 import com.zjf.weike.presenter.base.PresenterLoader;
 
-public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity implements LoaderManager.LoaderCallbacks<T>, PresenterFactory<T> {
+/**
+ * @author :ZJF
+ * @version : 2016-12-19 下午 5:40
+ */
+
+public abstract class MVPFragment<T extends BasePresenter> extends BaseFragment implements LoaderManager.LoaderCallbacks<T>, PresenterFactory<T> {
 
     protected T mPresenter;
 
+    public MVPFragment() {
+
+    }
+
     @Override
-    public void initVariables() {
-        getSupportLoaderManager().initLoader(0, null, this);
+    public void onStart() {
+        super.onStart();
+        mPresenter.onViewAttached(this);
+    }
+
+    @Override
+    public void loaderData() {
+        getLoaderManager().initLoader(0, null, this);
     }
 
     @Override
     public Loader<T> onCreateLoader(int id, Bundle args) {
-        return new PresenterLoader<>(this, this);
+        return new PresenterLoader<>(getContext(), this);
     }
 
     @Override
@@ -34,13 +49,7 @@ public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity 
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        mPresenter.onViewAttached(this);
-    }
-
-    @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         mPresenter.onViewDeached();
     }

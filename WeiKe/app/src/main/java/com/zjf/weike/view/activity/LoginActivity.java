@@ -34,7 +34,7 @@ public class LoginActivity extends MVPActivity<LoginPresenter> implements LoginV
 
     @Override
     public void initVariables() {
-
+        super.initVariables();
     }
 
     @Override

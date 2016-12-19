@@ -34,7 +34,6 @@ public class PresenterLoader<T extends BasePresenter> extends Loader<T> {
 
     @Override
     protected void onReset() {
-        mPresenter.onDestroyed();
-        mPresenter = null;
+        this.mPresenter = null;
     }
 }

@@ -10,7 +10,7 @@ public class RegisterActivity extends MVPActivity<RegisterPresenter> implements 
 
     @Override
     public void initVariables() {
-
+        super.initVariables();
     }
 
     @Override

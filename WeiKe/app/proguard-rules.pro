@@ -15,12 +15,58 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
--keep class com.bumptech.glide.integration.okhttp3.OkHttpGlideModule
--dontwarn retrofit.**
--keep class retrofit.** { *; }
+
+# butterknife混淆规则
+-dontwarn butterknife.internal.**
+-keep class **$$ViewInjector { *; }
+-keepnames class * { @butterknife.InjectView *;}
+
+
+#Gson混淆规则
+-keep class com.google.**{*;}
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+-keepattributes Signature
+-keep class sun.misc.Unsafe { *; }
+-keep class com.zjf.weike.bean.** { *; } #！！！gson解析的bean类包
+
+#自定义控件其他
+-keep class com.zjf.weike.widget.** { *; }
+
+#retrofit2混淆规则
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
 -keepattributes Signature
 -keepattributes Exceptions
 
--dontwarn rx.*
--keep class sun.misc.Unsafe { *; }
--keep class com.google.gson.examples.android.model.** { *; }
+#okhttp
+-dontwarn okhttp3.**
+-keep class okhttp3.**{*;}
+-keep interface okhttp3.**{*;}
+
+
+#rx2
+-dontwarn io.reactivex.**
+-keep class io.reactivex.**{*;}
+-keep interface io.reactivex.**{*;}
+
+#com.jakewharton
+-dontwarn com.jakewharton.**
+-keep class com.jakewharton.**{*;}
+
+#native方法
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+#glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+    **[] $VALUES;
+      public *;
+}

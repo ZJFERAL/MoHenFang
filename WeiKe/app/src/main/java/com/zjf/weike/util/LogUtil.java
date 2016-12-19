@@ -5,7 +5,7 @@ import android.util.Log;
 /**
  * Log统一管理类
  * 
- * @author zjf
+ * @author way
  * 
  */
 public class LogUtil
@@ -17,56 +17,58 @@ public class LogUtil
 		throw new UnsupportedOperationException("cannot be instantiated");
 	}
 
-	public static boolean isDebug = true;// 是否需要打印bug，可以在application的onCreate函数里面初始化
-	private static final String TAG = "way";
+	public static boolean isDebug = false;// 是否需要打印bug，可以在application的onCreate函数里面初始化
+	private static String TAG = "LogUtil";
+
+
 
 	// 下面四个是默认tag的函数
 	public static void i(String msg)
 	{
-		if (isDebug)
-			Log.i(TAG, msg);
+		i(TAG,msg);
 	}
 
 	public static void d(String msg)
 	{
-		if (isDebug)
-			Log.d(TAG, msg);
+		d(TAG,msg);
 	}
 
 	public static void e(String msg)
 	{
-		if (isDebug)
-			Log.e(TAG, msg);
+		e(TAG,msg);
 	}
 
 	public static void v(String msg)
 	{
-		if (isDebug)
-			Log.v(TAG, msg);
+		v(TAG,msg);
 	}
 
 	// 下面是传入自定义tag的函数
 	public static void i(String tag, String msg)
 	{
 		if (isDebug)
-			Log.i(tag, msg);
+			Log.i(tag+"---->", "////////////////////////////////\n//    "+msg
+					+"\n////////////////////////////////");
 	}
 
 	public static void d(String tag, String msg)
 	{
 		if (isDebug)
-			Log.i(tag, msg);
+			Log.d(tag+"---->", "////////////////////////////////\n//    "+msg
+					+"\n////////////////////////////////");
 	}
 
 	public static void e(String tag, String msg)
 	{
 		if (isDebug)
-			Log.i(tag, msg);
+			Log.e(tag+"---->", "////////////////////////////////\n//    "+msg
+					+"\n////////////////////////////////");
 	}
 
 	public static void v(String tag, String msg)
 	{
 		if (isDebug)
-			Log.i(tag, msg);
+			Log.v(tag+"---->", "////////////////////////////////\n//    "+msg
+					+"\n////////////////////////////////");
 	}
 }
