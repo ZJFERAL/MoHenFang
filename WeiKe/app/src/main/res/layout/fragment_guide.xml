@@ -4,45 +4,72 @@
              android:layout_height="match_parent"
              tools:context="com.zjf.weike.view.fragment.GuideFragment">
 
-   <ImageView
-       android:id="@+id/bg"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:scaleType="fitXY"/>
+    <ImageView
+        android:id="@+id/bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
 
-   <ImageView
-       android:id="@+id/img_top"
-       android:layout_width="180dp"
-       android:layout_height="50dp"
-       android:layout_margin="30dp"
-       android:src="@drawable/guide_text1"/>
+    <ImageView
+        android:id="@+id/img_top"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_margin="30dp"
+        android:src="@drawable/guide_text1"/>
 
-   <ImageView
-       android:id="@+id/img_middle"
-       android:layout_width="180dp"
-       android:layout_height="50dp"
-       android:layout_gravity="center_vertical"
-       android:layout_margin="30dp"
-       android:src="@drawable/guide_text3"
-       android:visibility="invisible"/>
+    <ImageView
+        android:id="@+id/img_middle"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="30dp"
+        android:src="@drawable/guide_text3"
+        android:visibility="invisible"/>
 
-   <ImageView
-       android:id="@+id/img_bottom"
-       android:layout_width="180dp"
-       android:layout_height="50dp"
-       android:layout_gravity="bottom"
-       android:layout_margin="30dp"
-       android:src="@drawable/guide_text2"
-       android:visibility="invisible"/>
+    <ImageView
+        android:id="@+id/img_bottom"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="30dp"
+        android:src="@drawable/guide_text2"
+        android:visibility="invisible"/>
 
-   <Button
-       android:id="@+id/btn_guide"
-       android:layout_width="170dp"
-       android:layout_height="40dp"
-       android:layout_gravity="center_horizontal|bottom"
-       android:layout_margin="70dp"
-       android:background="@drawable/guide_button"
-       android:visibility="gone"/>
+    <Button
+        android:id="@+id/btn_guide"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_margin="70dp"
+        android:text="@string/btn_nologin"
+        android:background="@drawable/ic_button_bg_theme"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/ic_button_bg_theme_2"
+            android:text="@string/text_register"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/ic_button_bg_theme"
+            android:text="@string/button_login"
+            android:visibility="gone"/>
+
+    </LinearLayout>
 
 
 </FrameLayout>

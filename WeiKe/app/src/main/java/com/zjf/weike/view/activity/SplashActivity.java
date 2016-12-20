@@ -1,22 +1,25 @@
 package com.zjf.weike.view.activity;
 
-import android.content.Intent;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.view.WindowManager;
 
 import com.zjf.weike.R;
+import com.zjf.weike.imp.OnPermissionResultListener;
 import com.zjf.weike.presenter.SplashPresenter;
+import com.zjf.weike.util.PermissionUtil;
 import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.SplashViewImp;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class SplashActivity extends MVPActivity<SplashPresenter> implements SplashViewImp {
+
+    private String[] mPermissions;
 
     @Override
     public void initVariables() {
         super.initVariables();
-
+        mPermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
     }
 
     @Override
@@ -24,12 +27,20 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                startActivity(new Intent(SplashActivity.this, GuideActivity.class));
-            }
-        }, 1500);
+        boolean havePermission = PermissionUtil.initPermission(this, mPermissions);
+        if (!havePermission) {
+            PermissionUtil.checkPermission(this, mPermissions, "", new OnPermissionResultListener() {
+                @Override
+                public void cancel() {
+                    // TODO 网络请求版本号
+                    jumpTo(SplashActivity.this, GuideActivity.class, 1000);
+                }
+            });
+        }else {
+            // TODO 网络请求版本号
+            jumpTo(SplashActivity.this, GuideActivity.class, 1000);
+        }
+
     }
 
     @Override
@@ -52,4 +63,23 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
     public SplashPresenter create() {
         return new SplashPresenter();
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // TODO 网络请求版本号
+            jumpTo(SplashActivity.this, GuideActivity.class, 1000);
+        } else {
+            PermissionUtil.checkPermission(this, mPermissions, "读取SD卡权限", new OnPermissionResultListener() {
+                @Override
+                public void cancel() {
+                    // TODO 网络请求版本号
+                    jumpTo(SplashActivity.this, GuideActivity.class, 1000);
+                }
+            });
+        }
+
+    }
+
+
 }

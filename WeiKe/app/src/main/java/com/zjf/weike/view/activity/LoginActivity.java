@@ -41,6 +41,9 @@ public class LoginActivity extends MVPActivity<LoginPresenter> implements LoginV
     public void initView() {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        mToolbar.setTitle("登陆");
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -49,7 +52,7 @@ public class LoginActivity extends MVPActivity<LoginPresenter> implements LoginV
     }
 
 
-    @OnClick({R.id.btn_login, R.id.text_register, R.id.text_forgetPwd, R.id.img_login_wechat, R.id.img_login_weibo, R.id.img_login_qq})
+    @OnClick({R.id.btn_login, R.id.text_register, R.id.text_forgetPwd, R.id.img_login_wechat, R.id.img_login_qq})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
@@ -63,8 +66,6 @@ public class LoginActivity extends MVPActivity<LoginPresenter> implements LoginV
                 startActivity(new Intent(LoginActivity.this,ReGetPasswordActivity.class));
                 break;
             case R.id.img_login_wechat:
-                break;
-            case R.id.img_login_weibo:
                 break;
             case R.id.img_login_qq:
                 break;

@@ -1,7 +1,6 @@
 package com.zjf.weike.view.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +10,14 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.zjf.weike.R;
+import com.zjf.weike.view.activity.LoginActivity;
 import com.zjf.weike.view.activity.MainActivity;
+import com.zjf.weike.view.activity.RegisterActivity;
 import com.zjf.weike.view.fragment.base.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 首次启动引导页
@@ -33,6 +35,10 @@ public class GuideFragment extends BaseFragment {
     ImageView mImgBottom;
     @BindView(R.id.btn_guide)
     Button mBtnGuide;
+    @BindView(R.id.btn_register)
+    Button mBtnRegister;
+    @BindView(R.id.btn_login)
+    Button mBtnLogin;
 
     private int page;
 
@@ -62,13 +68,7 @@ public class GuideFragment extends BaseFragment {
 
     @Override
     public void initListener() {
-        mBtnGuide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), MainActivity.class));
-                getActivity().finish();
-            }
-        });
+
     }
 
     @Override
@@ -90,6 +90,8 @@ public class GuideFragment extends BaseFragment {
                 mImgTop.setVisibility(View.INVISIBLE);
                 mImgMiddle.setVisibility(View.VISIBLE);
                 mBtnGuide.setVisibility(View.VISIBLE);
+                mBtnRegister.setVisibility(View.VISIBLE);
+                mBtnLogin.setVisibility(View.VISIBLE);
                 Glide.with(this)
                         .load(R.drawable.guide_bg3)
                         .into(mBg);
@@ -97,4 +99,21 @@ public class GuideFragment extends BaseFragment {
         }
     }
 
+    @OnClick({R.id.btn_guide, R.id.btn_register, R.id.btn_login})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_guide:
+                jumpTo(getActivity(), MainActivity.class);
+                getActivity().finish();
+                break;
+            case R.id.btn_register:
+                jumpTo(getActivity(), RegisterActivity.class);
+                getActivity().finish();
+                break;
+            case R.id.btn_login:
+                jumpTo(getActivity(), LoginActivity.class);
+                getActivity().finish();
+                break;
+        }
+    }
 }

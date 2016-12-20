@@ -2,7 +2,9 @@ package com.zjf.weike;
 
 import android.app.Application;
 
+import com.umeng.analytics.MobclickAgent;
 import com.zjf.weike.util.LogUtil;
+import com.zjf.weike.util.NativeUtil;
 
 /**
  * @author :ZJF
@@ -14,7 +16,11 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        LogUtil.isDebug = true;
 
+        LogUtil.isDebug = true;
+        String key = NativeUtil.getKey();
+        MobclickAgent.startWithConfigure(
+                new MobclickAgent.UMAnalyticsConfig(this, key, "wandoujia", MobclickAgent.EScenarioType.E_UM_NORMAL));
     }
+
 }

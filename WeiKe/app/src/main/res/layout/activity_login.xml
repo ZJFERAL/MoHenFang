@@ -81,10 +81,6 @@
                 style="@style/image_three_login"
                 android:src="@drawable/share_weixin"/>
 
-            <ImageView
-                android:id="@+id/img_login_weibo"
-                style="@style/image_three_login"
-                android:src="@drawable/share_weibo"/>
 
             <ImageView
                 android:id="@+id/img_login_qq"
