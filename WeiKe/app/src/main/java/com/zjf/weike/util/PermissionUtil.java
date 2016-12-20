@@ -15,7 +15,7 @@ import com.zjf.weike.imp.OnPermissionResultListener;
 
 /**
  * @author :ZJF
- * @version : 2016-12-20 上午 10:11
+ * @version : 2016-12-20 下午 9:41
  */
 
 public class PermissionUtil {

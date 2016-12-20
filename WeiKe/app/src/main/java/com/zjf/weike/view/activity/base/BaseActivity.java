@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.umeng.analytics.MobclickAgent;
 import com.zjf.weike.imp.JumpInto;
 import com.zjf.weike.imp.JumpTo;
@@ -12,11 +13,13 @@ import com.zjf.weike.imp.JumpTo;
 public abstract class BaseActivity extends AppCompatActivity {
 
     private JumpTo mTo;
+    protected RxPermissions mPermissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTo = new JumpInto();
+        mPermissions = new RxPermissions(this);
         initVariables();
         initView();
         setListener();
