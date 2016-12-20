@@ -77,7 +77,7 @@ public class LoginActivity extends MVPActivity<LoginPresenter> implements LoginV
     }
 
     @Override
-    public void showError(String error) {
+    public void showSnakBar(String msg) {
 
     }
 }

@@ -28,4 +28,9 @@ public class RegisterActivity extends MVPActivity<RegisterPresenter> implements 
     public RegisterPresenter create() {
         return new RegisterPresenter();
     }
+
+    @Override
+    public void showSnakBar(String msg) {
+
+    }
 }

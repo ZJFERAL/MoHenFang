@@ -21,7 +21,7 @@ public class MainPresenter implements BasePresenter {
     public void judgeExit() {
         long timeMillis = System.currentTimeMillis();
         if (timeMillis - 2000 > currentTime) {
-            mView.showError("再按一次退出");
+            mView.showSnakBar("再按一次退出");
             currentTime = timeMillis;
         } else {
             mView.exit();

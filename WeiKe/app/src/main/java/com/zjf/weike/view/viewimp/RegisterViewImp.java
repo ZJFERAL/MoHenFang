@@ -5,5 +5,5 @@ package com.zjf.weike.view.viewimp;
  * @version : 2016-12-16 下午 4:48
  */
 
-public interface RegisterViewImp {
+public interface RegisterViewImp extends BaseViewImp{
 }

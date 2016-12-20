@@ -108,8 +108,8 @@ public class MainActivity extends MVPActivity<MainPresenter>
     }
 
     @Override
-    public void showError(String error) {
-        Snackbar.make(mCoordinatorLayout, error, Snackbar.LENGTH_SHORT).show();
+    public void showSnakBar(String msg) {
+        Snackbar.make(mCoordinatorLayout, msg, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

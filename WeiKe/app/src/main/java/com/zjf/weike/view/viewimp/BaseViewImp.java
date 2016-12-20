@@ -7,6 +7,6 @@ package com.zjf.weike.view.viewimp;
 
 public interface BaseViewImp {
 
-    void showError(String error);
+    void showSnakBar(String msg);
 
 }

@@ -1,15 +1,29 @@
 package com.zjf.weike.view.activity;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import com.zjf.weike.presenter.ReGetPasswordPresenter;
+import com.zjf.weike.view.activity.base.MVPActivity;
+import com.zjf.weike.view.viewimp.ReGetPasswordViewImp;
 
-import com.zjf.weike.R;
+public class ReGetPasswordActivity extends MVPActivity<ReGetPasswordPresenter> implements ReGetPasswordViewImp{
 
-public class ReGetPasswordActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_re_get_password);
+    public ReGetPasswordPresenter create() {
+        return new ReGetPasswordPresenter();
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void setListener() {
+
+    }
+
+    @Override
+    public void showSnakBar(String msg) {
+
     }
 }

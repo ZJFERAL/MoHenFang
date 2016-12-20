@@ -44,7 +44,7 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
     }
 
     @Override
-    public void showError(String error) {
+    public void showSnakBar(String msg) {
 
     }
 
