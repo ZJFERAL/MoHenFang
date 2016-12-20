@@ -10,7 +10,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         initVariables();
         initView();
-        loaderData();
+        setListener();
     }
 
 
@@ -25,7 +25,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract void initView();
 
     /**
-     * 加载数据
+     * 初始化监听
      */
-    public abstract void loaderData();
+    public abstract void setListener();
 }

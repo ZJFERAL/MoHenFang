@@ -23,12 +23,17 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         initVariables();
-        return initView();
+        View view = initView(inflater, container, savedInstanceState);
+        initListener();
+        return view;
     }
 
     public abstract void initVariables();
 
-    public abstract View initView();
+    public abstract View initView(LayoutInflater inflater, ViewGroup container,
+                                  Bundle savedInstanceState);
+
+    public abstract void initListener();
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

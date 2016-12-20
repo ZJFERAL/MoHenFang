@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#f7ad52</color>
     <color name="colorAccent">#f9d150</color>
     <color name="colorBackground">#e7e7e7</color>
-
+    <!-- 圆形指示器的颜色-->
+    <color name="color_indicator_bg">#40000000</color>
+    <color name="color_indicator_selected_bg">#e6ffffff</color>
 </resources>

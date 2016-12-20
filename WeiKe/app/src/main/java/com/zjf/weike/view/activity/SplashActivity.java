@@ -16,6 +16,7 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
     @Override
     public void initVariables() {
         super.initVariables();
+
     }
 
     @Override
@@ -23,20 +24,19 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-    }
-
-    @Override
-    public void loaderData() {
-        // TODO 网络请求版本号
-
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                startActivity(new Intent(SplashActivity.this, GuideActivity.class));
             }
         }, 1500);
+    }
+
+    @Override
+    public void setListener() {
 
     }
+
 
     @Override
     public void compareVersion(String version) {

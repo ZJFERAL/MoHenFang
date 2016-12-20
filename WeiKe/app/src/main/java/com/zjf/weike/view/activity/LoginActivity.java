@@ -44,9 +44,10 @@ public class LoginActivity extends MVPActivity<LoginPresenter> implements LoginV
     }
 
     @Override
-    public void loaderData() {
+    public void setListener() {
 
     }
+
 
     @OnClick({R.id.btn_login, R.id.text_register, R.id.text_forgetPwd, R.id.img_login_wechat, R.id.img_login_weibo, R.id.img_login_qq})
     public void onClick(View view) {

@@ -19,9 +19,10 @@ public class RegisterActivity extends MVPActivity<RegisterPresenter> implements 
     }
 
     @Override
-    public void loaderData() {
+    public void setListener() {
 
     }
+
 
     @Override
     public RegisterPresenter create() {

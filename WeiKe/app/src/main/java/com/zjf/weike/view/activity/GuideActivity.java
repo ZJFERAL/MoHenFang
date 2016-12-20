@@ -5,11 +5,12 @@ import android.support.v4.view.ViewPager;
 import android.view.WindowManager;
 
 import com.zjf.weike.R;
+import com.zjf.weike.adapter.FragmentAdapter;
 import com.zjf.weike.presenter.GuidePresenter;
 import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.GuideViewImp;
+import com.zjf.weike.widget.CircleIndicator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -17,16 +18,14 @@ import butterknife.ButterKnife;
 
 public class GuideActivity extends MVPActivity<GuidePresenter> implements GuideViewImp {
 
-    private List<Fragment> mFragments;
 
     @BindView(R.id.viewPager)
     ViewPager mViewPager;
+    @BindView(R.id.circleindicator)
+    CircleIndicator mCircleindicator;
 
-    @Override
-    public void initVariables() {
-        super.initVariables();
-        mFragments = new ArrayList<>();
-    }
+    private FragmentAdapter mAdapter;
+
 
     @Override
     public void initView() {
@@ -39,18 +38,28 @@ public class GuideActivity extends MVPActivity<GuidePresenter> implements GuideV
     }
 
     @Override
-    public void loaderData() {
+    public void setListener() {
 
     }
 
 
     @Override
     public GuidePresenter create() {
-        return new GuidePresenter();
+        return new GuidePresenter(this);
     }
 
     @Override
     public void showError(String error) {
 
+    }
+
+    @Override
+    public void setFragment(List<Fragment> fragments) {
+        mAdapter = new FragmentAdapter(getSupportFragmentManager(),fragments);
+        mCircleindicator.setIndicatorMode(CircleIndicator.Mode.OUTSIDE);
+        mCircleindicator.setIndicatorRadius(10);//圆的大小
+        mCircleindicator.setIndicatorMargin(10);//间隔
+        mCircleindicator.setViewPager(mViewPager, fragments.size());
+        mViewPager.setAdapter(mAdapter);
     }
 }

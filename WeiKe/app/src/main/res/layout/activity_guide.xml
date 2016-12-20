@@ -2,6 +2,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_guide"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,5 +14,13 @@
         android:layout_height="match_parent">
 
     </android.support.v4.view.ViewPager>
+    <com.zjf.weike.widget.CircleIndicator
+        android:id="@+id/circleindicator"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="30dp"
+        app:ci_background="@color/color_indicator_bg"
+        app:ci_selected_background="@color/color_indicator_selected_bg"/>
 
 </FrameLayout>
