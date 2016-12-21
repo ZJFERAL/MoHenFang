@@ -41,7 +41,7 @@ public class LoginActivity extends MVPActivity<LoginPresenter> implements LoginV
     public void initView() {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        mToolbar.setTitle("登陆");
+        mToolbar.setTitle(getResources().getString(R.string.button_login));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

@@ -38,7 +38,7 @@ public class MainActivity extends MVPActivity<MainPresenter>
     public void initView() {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mToolbar.setTitle("WeBlog");
+        mToolbar.setTitle(getResources().getString(R.string.app_name));
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -58,7 +58,7 @@ public class MainActivity extends MVPActivity<MainPresenter>
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            mPresenter.judgeExit();
+            mPresenter.judgeExit(this);
         }
     }
 

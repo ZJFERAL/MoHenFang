@@ -1,5 +1,8 @@
 package com.zjf.weike.presenter;
 
+import android.content.Context;
+
+import com.zjf.weike.R;
 import com.zjf.weike.presenter.base.BasePresenter;
 import com.zjf.weike.view.viewimp.MainViewImp;
 
@@ -18,10 +21,10 @@ public class MainPresenter implements BasePresenter {
     }
 
 
-    public void judgeExit() {
+    public void judgeExit(Context context) {
         long timeMillis = System.currentTimeMillis();
         if (timeMillis - 2000 > currentTime) {
-            mView.showSnakBar("再按一次退出");
+            mView.showSnakBar(context.getResources().getString(R.string.pressTwiceExit));
             currentTime = timeMillis;
         } else {
             mView.exit();

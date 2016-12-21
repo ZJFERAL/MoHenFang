@@ -53,7 +53,7 @@ public class RegisterActivity extends MVPActivity<RegisterPresenter> implements 
     public void initView() {
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-        mToolbar.setTitle("注册");
+        mToolbar.setTitle(getResources().getString(R.string.button_register));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

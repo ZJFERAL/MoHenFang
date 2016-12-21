@@ -4,17 +4,17 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_all"
+            android:checked="true"
             android:icon="@drawable/ic_more_black_24dp"
-            android:title="全部动态"
-            android:checked="true"/>
+            android:title="@string/alldynamic"/>
         <item
             android:id="@+id/nav_my"
             android:icon="@drawable/ic_supervisor_account_green_a100_24dp"
-            android:title="好友动态"/>
+            android:title="@string/frienddynamic"/>
         <item
             android:id="@+id/nav_friend"
             android:icon="@drawable/ic_face_blue_50_24dp"
-            android:title="我发布的"/>
+            android:title="@string/mydynamic"/>
     </group>
 
     <item android:title=" ">
@@ -22,11 +22,11 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="分享"/>
+                android:title="@string/share"/>
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="关于"/>
+                android:title="@string/about"/>
         </menu>
     </item>
 

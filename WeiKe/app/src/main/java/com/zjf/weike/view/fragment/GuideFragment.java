@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.zjf.weike.R;
@@ -28,11 +29,11 @@ public class GuideFragment extends BaseFragment {
     @BindView(R.id.bg)
     ImageView mBg;
     @BindView(R.id.img_top)
-    ImageView mImgTop;
+    TextView mImgTop;
     @BindView(R.id.img_middle)
-    ImageView mImgMiddle;
+    TextView mImgMiddle;
     @BindView(R.id.img_bottom)
-    ImageView mImgBottom;
+    TextView mImgBottom;
     @BindView(R.id.btn_guide)
     Button mBtnGuide;
     @BindView(R.id.btn_register)

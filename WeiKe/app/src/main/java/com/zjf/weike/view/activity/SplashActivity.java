@@ -26,30 +26,41 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-        mPermissions.requestEach(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE)
+        requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
+
+    }
+
+    //请求权限
+    private void requestPermission(final String permissionName) {
+        mPermissions.requestEach(permissionName)
                 .subscribe(new Consumer<Permission>() {
                     @Override
                     public void accept(Permission permission) throws Exception {
                         if (permission.granted) {
-                            // TODO 
-                            jumpTo(SplashActivity.this, GuideActivity.class, 1300);
+                            switch (permission.name) {
+                                case Manifest.permission.READ_EXTERNAL_STORAGE:
+                                    requestPermission(Manifest.permission.ACCESS_COARSE_LOCATION);
+                                    break;
+                                case Manifest.permission.ACCESS_COARSE_LOCATION:
+                                    requestPermission(Manifest.permission.READ_PHONE_STATE);
+                                    break;
+                                case Manifest.permission.READ_PHONE_STATE:
+                                    // TODO 网络请求版本号
+                                    jumpTo(SplashActivity.this, GuideActivity.class, 2000);
+                                    break;
+                            }
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            requestPermission(permissionName);
                         } else {
-                            requestPermission(permission);
+                            DialogUtil.showPermissionDialog(SplashActivity.this, permissionName + getResources().getString(R.string.text_needpermission), new OnPermissionResultListener() {
+                                @Override
+                                public void cancel() {
+                                    requestPermission(permissionName);
+                                }
+                            });
                         }
                     }
                 });
-
-    }
-
-    //请求去设置权限
-    private void requestPermission(final Permission permission) {
-        DialogUtil.showPermissionDialog(SplashActivity.this, permission.name, new OnPermissionResultListener() {
-            @Override
-            public void cancel() {
-                //当不去设置时，反复提醒
-                requestPermission(permission);
-            }
-        });
     }
 
 

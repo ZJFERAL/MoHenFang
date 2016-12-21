@@ -10,29 +10,38 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"/>
 
-    <ImageView
+    <TextView
         android:id="@+id/img_top"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:src="@drawable/guide_text1"/>
+        android:text="@string/app_guide_"
+        android:textAllCaps="false"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="25sp"/>
 
-    <ImageView
+    <TextView
         android:id="@+id/img_middle"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_margin="30dp"
-        android:src="@drawable/guide_text3"
+        android:text="@string/app_guide_3"
+        android:textAllCaps="false"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="25sp"
         android:visibility="invisible"/>
 
-    <ImageView
+    <TextView
         android:id="@+id/img_bottom"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_margin="30dp"
-        android:src="@drawable/guide_text2"
+        android:text="@string/app_guide_2"
+        android:textAllCaps="false"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="25sp"
         android:visibility="invisible"/>
 
     <Button
@@ -41,8 +50,10 @@
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_margin="70dp"
+        android:background="@drawable/ic_guide_justin"
         android:text="@string/btn_nologin"
-        android:background="@drawable/ic_button_bg_theme"
+        android:textColor="@color/cardview_light_background"
+        android:textAllCaps="false"
         android:visibility="gone"/>
 
     <LinearLayout
@@ -57,7 +68,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/ic_button_bg_theme_2"
-            android:text="@string/text_register"
+            android:text="@string/button_register"
+            android:textAllCaps="false"
             android:visibility="gone"/>
 
         <Button
@@ -67,6 +79,7 @@
             android:layout_weight="1"
             android:background="@drawable/ic_button_bg_theme"
             android:text="@string/button_login"
+            android:textAllCaps="false"
             android:visibility="gone"/>
 
     </LinearLayout>

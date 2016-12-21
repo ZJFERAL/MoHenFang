@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.zjf.weike"
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -49,4 +49,6 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile files('libs/umeng-analytics-v6.0.4.jar')
     compile files('libs/utdid4all-1.0.4.jar')
+    compile files('libs/AMap_Location_V3.2.0_20161205.jar')
+    compile files('libs/AMap2DMap_2.9.3_AMapLocation_3.2.0_20161205.jar')
 }

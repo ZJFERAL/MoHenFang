@@ -53,7 +53,7 @@ public class ReGetPasswordActivity extends MVPActivity<ReGetPasswordPresenter> i
     public void initView() {
         setContentView(R.layout.activity_re_get_password);
         ButterKnife.bind(this);
-        mToolbar.setTitle("重置密码");
+        mToolbar.setTitle(getResources().getString(R.string.regetpwd));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
