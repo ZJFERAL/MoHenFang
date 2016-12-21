@@ -5,7 +5,9 @@ import android.view.WindowManager;
 
 import com.tbruyelle.rxpermissions2.Permission;
 import com.zjf.weike.R;
+import com.zjf.weike.imp.OnPermissionResultListener;
 import com.zjf.weike.presenter.SplashPresenter;
+import com.zjf.weike.util.DialogUtil;
 import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.SplashViewImp;
 
@@ -29,16 +31,25 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
                     @Override
                     public void accept(Permission permission) throws Exception {
                         if (permission.granted) {
-
-                        } else if (permission.shouldShowRequestPermissionRationale) {
-                            // Denied permission without ask never again
+                            // TODO 
+                            jumpTo(SplashActivity.this, GuideActivity.class, 1300);
                         } else {
-                            // Denied permission with ask never again
-                            // Need to go to the settings
+                            requestPermission(permission);
                         }
                     }
                 });
 
+    }
+
+    //请求去设置权限
+    private void requestPermission(final Permission permission) {
+        DialogUtil.showPermissionDialog(SplashActivity.this, permission.name, new OnPermissionResultListener() {
+            @Override
+            public void cancel() {
+                //当不去设置时，反复提醒
+                requestPermission(permission);
+            }
+        });
     }
 
 

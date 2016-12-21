@@ -50,11 +50,16 @@
 -keep class okhttp3.**{*;}
 -keep interface okhttp3.**{*;}
 
-
 #rx2
 -dontwarn io.reactivex.**
 -keep class io.reactivex.**{*;}
 -keep interface io.reactivex.**{*;}
+
+#rx2
+-dontwarn com.tbruyelle.**
+-keep class com.tbruyelle.**{*;}
+-keep interface com.tbruyelle.**{*;}
+
 
 #com.jakewharton
 -dontwarn com.jakewharton.**
