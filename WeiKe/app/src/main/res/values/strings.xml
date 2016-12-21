@@ -4,10 +4,7 @@
     <string name="app_guide">\ Exchange·Understand·Communicate</string>
     <string name="app_guide_">Exchange·Understand·Communicate</string>
     <string name="app_guide_2">Anytime, anywhere, found a new thing</string>
-    <string name="app_guide_3">There will be rilliant with you！</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="app_guide_3">WeBlog will be rilliant with you！</string>
 
     <string name="edit_userName">Please enter your user name</string>
     <string name="edit_pwd">Please enter the password</string>
@@ -32,4 +29,10 @@
     <string name="feedback">Feedback</string>
     <string name="share">Share</string>
     <string name="regetpwd">Reset password</string>
+    <string name="saysth">Say something...</string>
+    <string name="location">Add location</string>
+    <string name="publishdynamic">Publish the dynamic</string>
+    <string name="publish">Publish</string>
+    <string name="updata">Ready to start</string>
+    <string name="addphoto">Add photo</string>
 </resources>

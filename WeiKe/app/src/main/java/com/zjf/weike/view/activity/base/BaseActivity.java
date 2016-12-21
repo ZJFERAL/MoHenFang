@@ -39,9 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 初始化监听
      */
-    public void setListener() {
-
-    }
+    public abstract void setListener();
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -3,16 +3,17 @@ package com.zjf.weike.view.activity;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.zjf.weike.R;
 import com.zjf.weike.presenter.MainPresenter;
+import com.zjf.weike.util.SnackBarUtil;
 import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.MainViewImp;
 
@@ -41,7 +42,7 @@ public class MainActivity extends MVPActivity<MainPresenter>
         mToolbar.setTitle(getResources().getString(R.string.app_name));
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -50,7 +51,12 @@ public class MainActivity extends MVPActivity<MainPresenter>
 
     @Override
     public void setListener() {
-
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jumpTo(MainActivity.this, PublishActivity.class);
+            }
+        });
     }
 
     @Override
@@ -108,8 +114,8 @@ public class MainActivity extends MVPActivity<MainPresenter>
     }
 
     @Override
-    public void showSnakBar(String msg) {
-        Snackbar.make(mCoordinatorLayout, msg, Snackbar.LENGTH_SHORT).show();
+    public void showSnakBar(String msg,int type) {
+        SnackBarUtil.ShortSnackbar(mCoordinatorLayout, msg,type).show();
     }
 
     @Override

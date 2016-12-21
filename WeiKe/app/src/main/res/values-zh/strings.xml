@@ -5,10 +5,8 @@
     <string name="app_guide">\n沟通·了解·交流</string>
     <string name="app_guide_">沟通·了解·交流</string>
     <string name="app_guide_2">随时随地，发现新鲜事</string>
-    <string name="app_guide_3">有你更精彩！</string>
+    <string name="app_guide_3">微客,有你更精彩！</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="edit_userName">请输入用户名</string>
     <string name="edit_pwd">请输入密码</string>
@@ -33,5 +31,10 @@
     <string name="feedback">反馈</string>
     <string name="share">分享</string>
     <string name="regetpwd">重置密码</string>
-
+    <string name="saysth">说点什么吧。。。</string>
+    <string name="location">添加定位</string>
+    <string name="publishdynamic">发布动态</string>
+    <string name="publish">发表</string>
+    <string name="updata">整装再出发</string>
+    <string name="addphoto">添加图片</string>
 </resources>

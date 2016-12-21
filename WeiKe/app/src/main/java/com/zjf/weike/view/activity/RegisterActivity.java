@@ -70,7 +70,7 @@ public class RegisterActivity extends MVPActivity<RegisterPresenter> implements 
     }
 
     @Override
-    public void showSnakBar(String msg) {
+    public void showSnakBar(String msg,int type) {
 
     }
 

@@ -64,7 +64,7 @@ public class ReGetPasswordActivity extends MVPActivity<ReGetPasswordPresenter> i
     }
 
     @Override
-    public void showSnakBar(String msg) {
+    public void showSnakBar(String msg,int type) {
 
     }
 

@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.zjf.weike.R;
 import com.zjf.weike.presenter.LoginPresenter;
+import com.zjf.weike.util.SnackBarUtil;
 import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.LoginViewImp;
 
@@ -57,13 +58,13 @@ public class LoginActivity extends MVPActivity<LoginPresenter> implements LoginV
         switch (view.getId()) {
             case R.id.btn_login:
                 // TODO 登陆
-                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
             case R.id.text_register:
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
             case R.id.text_forgetPwd:
-                startActivity(new Intent(LoginActivity.this,ReGetPasswordActivity.class));
+                startActivity(new Intent(LoginActivity.this, ReGetPasswordActivity.class));
                 break;
             case R.id.img_login_wechat:
                 break;
@@ -78,7 +79,7 @@ public class LoginActivity extends MVPActivity<LoginPresenter> implements LoginV
     }
 
     @Override
-    public void showSnakBar(String msg) {
-
+    public void showSnakBar(String msg,int type) {
+        SnackBarUtil.ShortSnackbar(mActivityLogin, msg,1).show();
     }
 }

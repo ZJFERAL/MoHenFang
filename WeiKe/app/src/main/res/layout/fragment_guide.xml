@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_margin="30dp"
+        android:layout_marginBottom="100dp"
         android:text="@string/app_guide_2"
         android:textAllCaps="false"
         android:textColor="@color/cardview_light_background"
@@ -49,23 +50,25 @@
         android:layout_width="170dp"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_margin="70dp"
+        android:layout_margin="130dp"
         android:background="@drawable/ic_guide_justin"
         android:text="@string/btn_nologin"
-        android:textColor="@color/cardview_light_background"
         android:textAllCaps="false"
+        android:textColor="@color/cardview_light_background"
         android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_marginBottom="30dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:layout_weight="1"
             android:background="@drawable/ic_button_bg_theme_2"
             android:text="@string/button_register"
@@ -76,6 +79,7 @@
             android:id="@+id/btn_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:layout_weight="1"
             android:background="@drawable/ic_button_bg_theme"
             android:text="@string/button_login"

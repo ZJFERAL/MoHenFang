@@ -49,7 +49,7 @@ public class GuideActivity extends MVPActivity<GuidePresenter> implements GuideV
     }
 
     @Override
-    public void showSnakBar(String msg) {
+    public void showSnakBar(String msg,int type) {
 
     }
 
