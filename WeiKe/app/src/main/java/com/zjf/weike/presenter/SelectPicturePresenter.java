@@ -1,15 +1,10 @@
 package com.zjf.weike.presenter;
 
-import android.content.Context;
-
-import com.zjf.weike.R;
 import com.zjf.weike.bean.ImageFolder;
-import com.zjf.weike.imp.OnAsyncModel2SListener;
 import com.zjf.weike.imp.OnAsyncModelListener;
 import com.zjf.weike.model.SelectPictureAsyncModel;
 import com.zjf.weike.model.modelimp.SelectPictureAsyncModelImp;
 import com.zjf.weike.presenter.base.BasePresenter;
-import com.zjf.weike.view.activity.SelectPictureActivity;
 import com.zjf.weike.view.viewimp.SelectPictureViewImp;
 
 import java.util.List;
@@ -34,9 +29,9 @@ public class SelectPicturePresenter implements BasePresenter {
         mModel.getPicture(folderName, new OnAsyncModelListener<String>() {
 
             @Override
-            public void onFailure() {
+            public void onFailure(String msg,int type) {
                 if (isAttach) {
-                    mView.showSnakBar(((SelectPictureActivity) mView).getString(R.string.failure), 3);
+                    mView.showSnakBar(msg, type);
                 }
             }
 
@@ -52,18 +47,12 @@ public class SelectPicturePresenter implements BasePresenter {
     @Override
     public void onViewAttached(final Object view) {
         isAttach = true;
-        mModel.getData(new OnAsyncModel2SListener<ImageFolder,String>() {
-            @Override
-            public void onAction(List<String> list) {
-                if (isAttach) {
-                    mView.setPicture(list);
-                }
-            }
+        mModel.getData(new OnAsyncModelListener<ImageFolder>() {
 
             @Override
-            public void onFailure() {
+            public void onFailure(String msg,int type) {
                 if (isAttach) {
-                    mView.showSnakBar(((Context) view).getString(R.string.failure), 3);
+                    mView.showSnakBar(msg, type);
                 }
             }
 

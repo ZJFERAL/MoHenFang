@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/text_line_selector"
-                                    app:contentPadding="4dp">
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/item_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:scaleType="centerCrop"/>
 
     <CheckBox
         android:id="@+id/item_check"
-        android:layout_width="8dp"
-        android:layout_height="8dp"
-        android:layout_gravity="top|right"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:layout_margin="4dp"/>
 
 </android.support.v7.widget.CardView>

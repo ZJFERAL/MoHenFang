@@ -74,6 +74,7 @@
         </activity>
         <activity
             android:name=".view.activity.SelectPictureActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait">
         </activity>
     </application>

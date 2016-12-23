@@ -8,6 +8,6 @@ import com.zjf.weike.imp.OnAsyncModelListener;
  * @version : 2016-12-22 下午 3:34
  */
 
-public interface SelectPictureAsyncModelImp extends BaseAsync2SModelImp<ImageFolder,String> {
+public interface SelectPictureAsyncModelImp extends BaseAsyncModelImp<ImageFolder> {
     void getPicture(String folderName,OnAsyncModelListener<String> listener);
 }

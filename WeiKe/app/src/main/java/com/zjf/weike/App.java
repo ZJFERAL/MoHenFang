@@ -12,10 +12,13 @@ import com.zjf.weike.util.NativeUtil;
  */
 
 public class App extends Application {
+
+    private static App instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
-
+        instance = this;
 
         LogUtil.isDebug = true;
         String key = NativeUtil.getKey();
@@ -23,4 +26,7 @@ public class App extends Application {
                 new MobclickAgent.UMAnalyticsConfig(this, key, "wandoujia", MobclickAgent.EScenarioType.E_UM_NORMAL));
     }
 
+    public static App getInstance() {
+        return instance;
+    }
 }

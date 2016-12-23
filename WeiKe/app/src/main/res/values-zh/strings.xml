@@ -51,4 +51,6 @@
     <string name="selectnum">已选择 0/9</string>
     <string name="selectnum_half">/9</string>
     <string name="selectnum_hint">已选择 </string>
+    <string name="nosdcard">没有外置存储设备</string>
+    <string name="ninepicture">最多选择9张图</string>
 </resources>

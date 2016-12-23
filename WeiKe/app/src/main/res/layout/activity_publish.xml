@@ -62,7 +62,8 @@
                 android:layout_marginLeft="20dp"
                 android:background="@null"
                 android:drawableLeft="@drawable/ic_add_box_white_36dp"
-                android:text="@string/addphoto"/>
+                android:text="@string/addphoto"
+                android:textAllCaps="false"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"

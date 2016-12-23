@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface OnAsyncModelListener<T> {
 
-    void onFailure();
+    void onFailure(String msg,int type);
 
     void onSuccess(List<T> list);
 
