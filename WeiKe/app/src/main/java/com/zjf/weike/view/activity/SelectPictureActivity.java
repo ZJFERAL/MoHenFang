@@ -62,7 +62,7 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
     private List<ImageFolder> mFolders;
     private int mBeHaviorHeight;
     private String currentFolder;
-    private int mNum;
+    private ArrayList<String> mAlreadhave;
 
 
     @Override
@@ -70,7 +70,7 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
         super.initVariables();
         Intent intent = getIntent();
         if (intent != null) {
-            mNum = intent.getIntExtra("lastNum", 9);
+            mAlreadhave = intent.getStringArrayListExtra("alreadhave");
         }
         mDialog = new ProgressDialog(this);
         mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -81,7 +81,7 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
         mFolders = new ArrayList<>();
         mPictureAdapter = new SelectPictureAdapter(this, mPictures, R.layout.select_photo);
         mAblumAdapter = new SelectAblumAdapter(this, mFolders, R.layout.select_folder);
-        mPictureAdapter.setNum(mNum);
+        mPictureAdapter.setAlreadhave(mAlreadhave);
     }
 
     @Override
@@ -89,7 +89,8 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
         setContentView(R.layout.activity_select_picture);
         ButterKnife.bind(this);
         mToolbar.setTitle(getString(R.string.selectpicture));
-        mToolbar.setSubtitle(getString(R.string.selectnum) + mNum);
+        mToolbar.setSubtitle(getString(R.string.selectnum_hint)
+                + mAlreadhave.size() + getString(R.string.selectnum_half));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mBehavior = BottomSheetBehavior.from(mBottomSheet);
@@ -109,7 +110,7 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
             public void pictureSelect(int num) {
                 getSupportActionBar()
                         .setSubtitle(getString(R.string.selectnum_hint)
-                                + num + getString(R.string.selectnum_half) + mNum);
+                                + num + getString(R.string.selectnum_half));
             }
         });
         mPictureAdapter.setOnItemClickListener(new CRecyclerViewAdapter.OnItemClickListener<String>() {
@@ -194,7 +195,7 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
         switch (view.getId()) {
             case R.id.fab_done:
                 Intent intent = new Intent();
-                intent.putStringArrayListExtra("picture", mPictureAdapter.getSelectList());
+                intent.putStringArrayListExtra("picture", mPictureAdapter.getAlreadhave());
                 setResult(RESULT_OK, intent);
                 finish();
                 break;

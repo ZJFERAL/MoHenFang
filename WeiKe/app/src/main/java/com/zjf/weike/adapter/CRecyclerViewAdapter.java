@@ -152,6 +152,17 @@ public abstract class CRecyclerViewAdapter<T> extends RecyclerView.Adapter<CRecy
     }
 
     /**
+     * 添加单条数据
+     *
+     * @param t
+     */
+    public void addItemData(T t) {
+        int size = mData.size();
+        mData.add(size, t);
+        notifyItemInserted(size);
+    }
+
+    /**
      * 移除单条数据
      *
      * @param position

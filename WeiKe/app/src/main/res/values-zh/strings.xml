@@ -48,9 +48,9 @@
     <string name="progressdiolog">努力加载中...</string>
     <string name="hint">提示</string>
     <string name="selectpicture">选择图片</string>
-    <string name="selectnum">已选择 0/</string>
-    <string name="selectnum_half">/</string>
+    <string name="selectnum_half">/9</string>
     <string name="selectnum_hint">已选择 </string>
     <string name="nosdcard">没有外置存储设备</string>
     <string name="ninepicture">不能选择更多了</string>
+    <string name="nomore">不能再添加了</string>
 </resources>

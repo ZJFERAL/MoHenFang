@@ -78,9 +78,22 @@ public class CRecyclerViewViewHolder extends RecyclerView.ViewHolder {
         Glide.with(mContext).load(url).into(imageView);
         return this;
     }
-    public CRecyclerViewViewHolder setImageByUrl(int viewId, String url,int placeholder) {
+
+    public CRecyclerViewViewHolder setImageByUrl(int viewId, String url, int placeholder) {
         ImageView imageView = getView(viewId);
         Glide.with(mContext).load(url).placeholder(placeholder).into(imageView);
+        return this;
+    }
+
+    public CRecyclerViewViewHolder setImageByUrl(int viewId, String url, int width, int height) {
+        ImageView imageView = getView(viewId);
+        Glide.with(mContext).load(url).override(width, height).into(imageView);
+        return this;
+    }
+
+    public CRecyclerViewViewHolder setImageByUrl(int viewId, String url, int width, int height, int placeholder) {
+        ImageView imageView = getView(viewId);
+        Glide.with(mContext).load(url).override(width, height).placeholder(placeholder).into(imageView);
         return this;
     }
 

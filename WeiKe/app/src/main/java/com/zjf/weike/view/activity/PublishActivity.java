@@ -1,6 +1,8 @@
 package com.zjf.weike.view.activity;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -22,8 +24,9 @@ import com.zjf.weike.util.SnackBarUtil;
 import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.PublishViewImp;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,12 +51,17 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
-    private List<String> mBitmaps;
+    public static final int ABLUM_CODE = 1001;
+    public static final int CAMARE_CODE = 1002;
+
+    private ArrayList<String> mBitmaps;
     private PhotoAdapter mAdapter;
     private RecyclerView.LayoutManager mManager;
     private BottomSheetDialog mDialog;
     private View mDialogView;
     private Button mBtnCamera, mBtnAlbum, mBtnCancel;
+    private Uri imageUri;
+    private File mOutputImage;
 
     @Override
     public PublishPresenter create() {
@@ -111,23 +119,38 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
                 break;
             case R.id.btn_camera:
                 mDialog.dismiss();
-                showSnakBar("拍照", 1);
+                if (mAdapter.getItemCount() < 9) {
+                    startCamare();
+                } else {
+                    showSnakBar(getString(R.string.nomore), 1);
+                }
                 break;
             case R.id.btn_cancle:
                 mDialog.dismiss();
                 break;
             case R.id.btn_fromlocal:
-                int count = mAdapter.getItemCount();
-                if (count < 9) {
-                    Intent intent = new Intent(this, SelectPictureActivity.class);
-                    intent.putExtra("lastNum", 9 - count);
-                    startActivityForResult(intent, 1001);
-                } else {
-                    showSnakBar(getString(R.string.ninepicture), 1);
-                }
+                Intent intent = new Intent(this, SelectPictureActivity.class);
+                intent.putStringArrayListExtra("alreadhave", mBitmaps);
+                startActivityForResult(intent, ABLUM_CODE);
                 mDialog.dismiss();
                 break;
         }
+    }
+
+    private void startCamare() {
+        mOutputImage = new File(getExternalCacheDir(), "output_image.jpg");
+        try {
+            if (mOutputImage.exists()) {
+                mOutputImage.delete();
+            }
+            mOutputImage.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        imageUri = Uri.fromFile(mOutputImage);
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        startActivityForResult(intent, CAMARE_CODE);
     }
 
     @Override
@@ -155,9 +178,15 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1001 && resultCode == RESULT_OK && data != null) {
-            ArrayList<String> list = data.getStringArrayListExtra("picture");
-            mAdapter.addNewData(list);
+        if (resultCode == RESULT_OK && data != null) {
+            if (requestCode == ABLUM_CODE) {
+                ArrayList<String> picture = data.getStringArrayListExtra("picture");
+                mAdapter.flushData(picture);
+            }
+            if (requestCode == CAMARE_CODE) {
+                mAdapter.getData().add(mOutputImage.getAbsolutePath());
+                mAdapter.notifyItemInserted(mAdapter.getItemCount());
+            }
         }
     }
 }
