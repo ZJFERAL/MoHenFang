@@ -1,12 +1,14 @@
 package com.zjf.weike.view.activity;
 
-import android.graphics.Bitmap;
+import android.content.Intent;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,7 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class PublishActivity extends MVPActivity<PublishPresenter> implements PublishViewImp {
+public class PublishActivity extends MVPActivity<PublishPresenter> implements PublishViewImp, View.OnClickListener {
 
 
     @BindView(R.id.edit_msg)
@@ -46,9 +48,12 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
-    private List<Bitmap> mBitmaps;
+    private List<String> mBitmaps;
     private PhotoAdapter mAdapter;
     private RecyclerView.LayoutManager mManager;
+    private BottomSheetDialog mDialog;
+    private View mDialogView;
+    private Button mBtnCamera, mBtnAlbum, mBtnCancel;
 
     @Override
     public PublishPresenter create() {
@@ -61,26 +66,35 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
         mBitmaps = new ArrayList<>();
         mAdapter = new PhotoAdapter(this, mBitmaps, R.layout.publish_photo);
         mManager = new GridLayoutManager(this, 3);
+        mDialog = new BottomSheetDialog(this);
     }
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_publish);
         ButterKnife.bind(this);
-        mToolbar.setTitle(getResources().getString(R.string.publishdynamic));
+        mToolbar.setTitle(getString(R.string.publishdynamic));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mRecyclerView.setLayoutManager(mManager);
         mRecyclerView.setAdapter(mAdapter);
+        mDialogView = LayoutInflater.from(this).inflate(R.layout.bottom_dialog_getpicture, null);
+        mDialog.setContentView(mDialogView);
+        mBtnCamera = (Button) mDialogView.findViewById(R.id.btn_camera);
+        mBtnAlbum = (Button) mDialogView.findViewById(R.id.btn_fromlocal);
+        mBtnCancel = (Button) mDialogView.findViewById(R.id.btn_cancle);
     }
 
     @Override
     public void setListener() {
+        mBtnCancel.setOnClickListener(this);
+        mBtnCamera.setOnClickListener(this);
+        mBtnAlbum.setOnClickListener(this);
 
     }
 
     @Override
-    public void showSnakBar(String msg,int type) {
+    public void showSnakBar(String msg, int type) {
         SnackBarUtil.ShortSnackbar(mActivityPublish, msg, type).show();
     }
 
@@ -89,11 +103,22 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab_publish:
-                // TODO 上传数据参数
+                // TODO 上传动态
                 mPresenter.publishInfo();
                 break;
             case R.id.btn_addPhoto:
-                // TODO 添加图片
+                mDialog.show();
+                break;
+            case R.id.btn_camera:
+                mDialog.dismiss();
+                showSnakBar("拍照", 1);
+                break;
+            case R.id.btn_cancle:
+                mDialog.dismiss();
+                break;
+            case R.id.btn_fromlocal:
+                startActivityForResult(new Intent(this, SelectPictureActivity.class), 1001);
+                mDialog.dismiss();
                 break;
         }
     }
@@ -112,9 +137,19 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        //
-        showSnakBar("location",1);
+        if (item.getItemId() == R.id.action_location) {
+            // TODO 获取位置
+            item.setIcon(null);
+            item.setTitle("北京");
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1001&&resultCode==RESULT_OK&&data!=null){
+
+        }
     }
 }

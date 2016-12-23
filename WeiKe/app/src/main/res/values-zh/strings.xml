@@ -37,4 +37,18 @@
     <string name="publish">发表</string>
     <string name="updata">整装再出发</string>
     <string name="addphoto">添加图片</string>
+    <string name="fromlocal">从相册中获取</string>
+    <string name="fromcamera">拍照</string>
+    <string name="cancel">取消</string>
+    <string name="switchfolder">切换文件夹</string>
+    <string name="failure">我们似乎遇到了一些状况</string>
+    <string name="netfailure">网络君似乎遇到了一些状况</string>
+    <string name="nopicture">没有任何图片。。。</string>
+    <string name="progressdiolog_p">努力搜图中...</string>
+    <string name="progressdiolog">努力加载中...</string>
+    <string name="hint">提示</string>
+    <string name="selectpicture">选择图片</string>
+    <string name="selectnum">已选择 0/9</string>
+    <string name="selectnum_half">/9</string>
+    <string name="selectnum_hint">已选择 </string>
 </resources>

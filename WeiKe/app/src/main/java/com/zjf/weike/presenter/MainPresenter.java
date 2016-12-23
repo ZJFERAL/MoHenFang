@@ -24,7 +24,7 @@ public class MainPresenter implements BasePresenter {
     public void judgeExit(Context context) {
         long timeMillis = System.currentTimeMillis();
         if (timeMillis - 2000 > currentTime) {
-            mView.showSnakBar(context.getResources().getString(R.string.pressTwiceExit), 2);
+            mView.showSnakBar(context.getString(R.string.pressTwiceExit), 2);
             currentTime = timeMillis;
         } else {
             mView.exit();

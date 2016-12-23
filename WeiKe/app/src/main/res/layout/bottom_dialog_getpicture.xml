@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cardview_light_background"
+        android:padding="5dp"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_fromlocal"
+            android:text="@string/fromlocal"
+            style="@style/style_button_bottom"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"/>
+        <Button
+            android:id="@+id/btn_camera"
+            android:text="@string/fromcamera"
+            style="@style/style_button_bottom"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+        <Button
+            android:id="@+id/btn_cancle"
+            android:text="@string/cancel"
+            style="@style/style_button_bottom"/>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -21,6 +21,7 @@ public abstract class CRecyclerViewAdapter<T> extends RecyclerView.Adapter<CRecy
     protected int[] mItemLayoutIds;
 
     protected OnItemClickListener mOnItemClickListener;
+    protected OnItemLongClickListener mOnItemLongClickListener;
     protected View mEmptyView;
 
     public CRecyclerViewAdapter(Context context, List<T> data, int... itemLayoutIds) {
@@ -31,6 +32,7 @@ public abstract class CRecyclerViewAdapter<T> extends RecyclerView.Adapter<CRecy
 
     /**
      * 设置监听
+     *
      * @param onItemClickListener
      */
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -38,7 +40,15 @@ public abstract class CRecyclerViewAdapter<T> extends RecyclerView.Adapter<CRecy
     }
 
     /**
+     * 设置长点击监听
      *
+     * @param onItemLongClickListener
+     */
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        mOnItemLongClickListener = onItemLongClickListener;
+    }
+
+    /**
      * @param emptyView
      */
     public void setEmptyView(View emptyView) {
@@ -70,9 +80,9 @@ public abstract class CRecyclerViewAdapter<T> extends RecyclerView.Adapter<CRecy
         holder.getConvertView().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if (mOnItemClickListener != null) {
+                if (mOnItemLongClickListener != null) {
                     int position = holder.getAdapterPosition();
-                    return mOnItemClickListener.onItemLongClick(v, holder, mData.get(position));
+                    return mOnItemLongClickListener.onItemLongClick(v, holder, mData.get(position));
                 }
                 return false;
             }
@@ -91,7 +101,7 @@ public abstract class CRecyclerViewAdapter<T> extends RecyclerView.Adapter<CRecy
     @Override
     public int getItemCount() {
         int count = mData != null ? mData.size() : 0;
-        if(mEmptyView!=null){
+        if (mEmptyView != null) {
             setEmptyViewState(count);
         }
         return count;
@@ -185,9 +195,10 @@ public abstract class CRecyclerViewAdapter<T> extends RecyclerView.Adapter<CRecy
 
     public interface OnItemClickListener<T> {
         void onItemClick(View view, CRecyclerViewViewHolder holder, T item);
-
-        boolean onItemLongClick(View view, CRecyclerViewViewHolder holder, T item);
     }
 
+    public interface OnItemLongClickListener<T> {
+        boolean onItemLongClick(View view, CRecyclerViewViewHolder holder, T item);
+    }
 
 }

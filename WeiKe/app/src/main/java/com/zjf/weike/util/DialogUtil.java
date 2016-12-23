@@ -15,7 +15,7 @@ import com.zjf.weike.imp.OnPermissionResultListener;
  */
 
 public class DialogUtil {
-    public static void showPermissionDialog(final Context context, String perName, final OnPermissionResultListener listener){
+    public static void showPermissionDialog(final Context context, String perName, final OnPermissionResultListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("缺少" + perName);
         builder.setMessage("是否去授予" + perName);
@@ -37,5 +37,7 @@ public class DialogUtil {
         });
         builder.show();
     }
+
+
 
 }

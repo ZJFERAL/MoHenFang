@@ -12,11 +12,10 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"/>
 
-    <Button
-        android:id="@+id/item_delete"
+    <CheckBox
+        android:id="@+id/item_check"
         android:layout_width="8dp"
         android:layout_height="8dp"
-        android:layout_gravity="top|right"
-        android:background="@drawable/ic_highlight_off_black_18dp"/>
+        android:layout_gravity="top|right"/>
 
 </android.support.v7.widget.CardView>

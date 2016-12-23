@@ -35,4 +35,18 @@
     <string name="publish">Publish</string>
     <string name="updata">Ready to start</string>
     <string name="addphoto">Add photo</string>
+    <string name="fromlocal">From photo album</string>
+    <string name="fromcamera">Take photo</string>
+    <string name="cancel">Cancel</string>
+    <string name="switchfolder">Switch the folder</string>
+    <string name="failure">We seem to have a few problems</string>
+    <string name="netfailure">Network is not smooth</string>
+    <string name="nopicture">No picture...</string>
+    <string name="progressdiolog_p">In trying to to search...</string>
+    <string name="progressdiolog">In trying to load...</string>
+    <string name="hint">Hint</string>
+    <string name="selectpicture">Select picture</string>
+    <string name="selectnum">Choose 0/9</string>
+    <string name="selectnum_half">/9</string>
+    <string name="selectnum_hint">Choose </string>
 </resources>

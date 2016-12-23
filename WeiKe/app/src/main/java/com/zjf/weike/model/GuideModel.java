@@ -2,7 +2,7 @@ package com.zjf.weike.model;
 
 import android.support.v4.app.Fragment;
 
-import com.zjf.weike.model.modelimp.FragmentModelImp;
+import com.zjf.weike.model.modelimp.BaseModelImp;
 import com.zjf.weike.view.fragment.GuideFragment;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.List;
  * @version : 2016-12-05 下午 4:16
  */
 
-public class GuideModel implements FragmentModelImp {
+public class GuideModel implements BaseModelImp<Fragment> {
 
     private List<Fragment> mFragments;
 
@@ -27,7 +27,7 @@ public class GuideModel implements FragmentModelImp {
     }
 
     @Override
-    public List<Fragment> getFragments() {
+    public List<Fragment> getData() {
         return mFragments;
     }
 }
