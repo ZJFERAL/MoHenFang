@@ -50,9 +50,11 @@
                     android:id="@+id/edit_msg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
                     android:background="@null"
                     android:gravity="start"
-                    android:hint="@string/saysth"/>
+                    android:hint="@string/saysth"
+                    android:minHeight="300dp"/>
             </android.support.design.widget.TextInputLayout>
 
             <Button

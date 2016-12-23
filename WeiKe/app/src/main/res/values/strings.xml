@@ -46,9 +46,9 @@
     <string name="progressdiolog">In trying to load...</string>
     <string name="hint">Hint</string>
     <string name="selectpicture">Select picture</string>
-    <string name="selectnum">Choose 0/9</string>
-    <string name="selectnum_half">/9</string>
+    <string name="selectnum">Choose 0/</string>
+    <string name="selectnum_half">/</string>
     <string name="selectnum_hint">Choose </string>
     <string name="nosdcard">No SD card</string>
-    <string name="ninepicture">Most choose 9 picture</string>
+    <string name="ninepicture">Can not choose more</string>
 </resources>

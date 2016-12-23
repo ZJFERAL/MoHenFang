@@ -117,7 +117,14 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
                 mDialog.dismiss();
                 break;
             case R.id.btn_fromlocal:
-                startActivityForResult(new Intent(this, SelectPictureActivity.class), 1001);
+                int count = mAdapter.getItemCount();
+                if (count < 9) {
+                    Intent intent = new Intent(this, SelectPictureActivity.class);
+                    intent.putExtra("lastNum", 9 - count);
+                    startActivityForResult(intent, 1001);
+                } else {
+                    showSnakBar(getString(R.string.ninepicture), 1);
+                }
                 mDialog.dismiss();
                 break;
         }
@@ -148,8 +155,9 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1001&&resultCode==RESULT_OK&&data!=null){
-
+        if (requestCode == 1001 && resultCode == RESULT_OK && data != null) {
+            ArrayList<String> list = data.getStringArrayListExtra("picture");
+            mAdapter.addNewData(list);
         }
     }
 }

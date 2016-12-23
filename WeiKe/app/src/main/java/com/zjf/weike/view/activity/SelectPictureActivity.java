@@ -1,6 +1,8 @@
 package com.zjf.weike.view.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Build;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -60,11 +62,16 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
     private List<ImageFolder> mFolders;
     private int mBeHaviorHeight;
     private String currentFolder;
+    private int mNum;
 
 
     @Override
     public void initVariables() {
         super.initVariables();
+        Intent intent = getIntent();
+        if (intent != null) {
+            mNum = intent.getIntExtra("lastNum", 9);
+        }
         mDialog = new ProgressDialog(this);
         mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mDialog.setMessage(getString(R.string.progressdiolog_p));
@@ -74,6 +81,7 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
         mFolders = new ArrayList<>();
         mPictureAdapter = new SelectPictureAdapter(this, mPictures, R.layout.select_photo);
         mAblumAdapter = new SelectAblumAdapter(this, mFolders, R.layout.select_folder);
+        mPictureAdapter.setNum(mNum);
     }
 
     @Override
@@ -81,7 +89,7 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
         setContentView(R.layout.activity_select_picture);
         ButterKnife.bind(this);
         mToolbar.setTitle(getString(R.string.selectpicture));
-        mToolbar.setSubtitle(getString(R.string.selectnum));
+        mToolbar.setSubtitle(getString(R.string.selectnum) + mNum);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mBehavior = BottomSheetBehavior.from(mBottomSheet);
@@ -101,7 +109,7 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
             public void pictureSelect(int num) {
                 getSupportActionBar()
                         .setSubtitle(getString(R.string.selectnum_hint)
-                                + num + getString(R.string.selectnum_half));
+                                + num + getString(R.string.selectnum_half) + mNum);
             }
         });
         mPictureAdapter.setOnItemClickListener(new CRecyclerViewAdapter.OnItemClickListener<String>() {
@@ -141,7 +149,7 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
             currentFolder = folders.get(0).getDir();
             mPresenter.getPicture(folders.get(0).getDir());
         } else {
-            //showSnakBar(getString(R.string.nopicture), 1);
+            showSnakBar(getString(R.string.nopicture), 1);
             mDialog.dismiss();
         }
     }
@@ -155,15 +163,17 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
     }
 
     private void resetBehaviorHeight(final Snackbar snackbar) {
-        ViewTreeObserver vto = snackbar.getView().getViewTreeObserver();
-        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            public boolean onPreDraw() {
-                int height = snackbar.getView().getMeasuredHeight();
-                LogUtil.e("snackBarheight", height + "");
-                mBehavior.setPeekHeight(mBeHaviorHeight + height / 2);
-                return true;
-            }
-        });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ViewTreeObserver vto = snackbar.getView().getViewTreeObserver();
+            vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                public boolean onPreDraw() {
+                    int height = snackbar.getView().getMeasuredHeight();
+                    LogUtil.e("snackBarheight", height + "");
+                    mBehavior.setPeekHeight(mBeHaviorHeight + height / 2);
+                    return true;
+                }
+            });
+        }
     }
 
     @Override
@@ -183,11 +193,10 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab_done:
-//                Intent intent = new Intent();
-//                intent.putStringArrayListExtra("picture", mPictureAdapter.getSelectList());
-//                setResult(RESULT_OK, intent);
-//                finish();
-                showSnakBar("test", 1);
+                Intent intent = new Intent();
+                intent.putStringArrayListExtra("picture", mPictureAdapter.getSelectList());
+                setResult(RESULT_OK, intent);
+                finish();
                 break;
             case R.id.switcher:
                 int state = mBehavior.getState();

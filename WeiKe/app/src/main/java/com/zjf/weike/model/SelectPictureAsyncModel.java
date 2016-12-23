@@ -11,7 +11,6 @@ import com.zjf.weike.R;
 import com.zjf.weike.bean.ImageFolder;
 import com.zjf.weike.imp.OnAsyncModelListener;
 import com.zjf.weike.model.modelimp.SelectPictureAsyncModelImp;
-import com.zjf.weike.util.LogUtil;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -128,13 +127,11 @@ public class SelectPictureAsyncModel implements SelectPictureAsyncModelImp {
                         new String[]{"image/jpeg", "image/png"},
                         MediaStore.Images.Media.DATE_MODIFIED);
 
-                LogUtil.e("ImageLoaderFromSDUtil", mCursor.getCount() + "");
                 while (mCursor.moveToNext()) {
                     // 获取图片的路径
                     String path = mCursor.getString(mCursor
                             .getColumnIndex(MediaStore.Images.Media.DATA));
 
-                    LogUtil.e("ImageLoaderFromSDUtil", path);
                     // 拿到第一张图片的路径
                     if (firstImage == null)
                         firstImage = path;

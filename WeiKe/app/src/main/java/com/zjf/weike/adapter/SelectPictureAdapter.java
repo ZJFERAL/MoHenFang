@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.zjf.weike.R;
 import com.zjf.weike.imp.OnPictureSelectListener;
+import com.zjf.weike.util.LogUtil;
 import com.zjf.weike.view.activity.SelectPictureActivity;
 
 import java.util.ArrayList;
@@ -23,6 +24,11 @@ public class SelectPictureAdapter extends CRecyclerViewAdapter<String> {
     private ArrayList<String> selectList;
     private OnPictureSelectListener mListener;
     private float width;
+    private int mNum;
+
+    public void setNum(int num) {
+        mNum = num;
+    }
 
     public void setListener(OnPictureSelectListener listener) {
         mListener = listener;
@@ -42,7 +48,12 @@ public class SelectPictureAdapter extends CRecyclerViewAdapter<String> {
     @Override
     protected void setConvertView(CRecyclerViewViewHolder holder, final String item, int position) {
         CheckBox view = holder.getView(R.id.item_check);
-        view.setChecked(false);
+        if (selectList.contains(item)) {
+            view.setChecked(true);
+        } else {
+            view.setChecked(false);
+        }
+        LogUtil.e("checkbox", view.isChecked() + "  " + position);
         Glide.with(mContext)
                 .load(item)
                 .override((int) width, (int) width)
@@ -52,13 +63,14 @@ public class SelectPictureAdapter extends CRecyclerViewAdapter<String> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    if (selectList.size() < 9) {
+                    if (selectList.size() < mNum) {
                         selectList.add(item);
                     } else {
                         buttonView.setChecked(false);
                         ((SelectPictureActivity) mContext).showSnakBar(mContext.getString(R.string.ninepicture), 1);
                     }
                 }
+                LogUtil.e("checkbox", isChecked + "");
                 if (!isChecked && selectList.size() > 0) {
                     selectList.remove(item);
                 }

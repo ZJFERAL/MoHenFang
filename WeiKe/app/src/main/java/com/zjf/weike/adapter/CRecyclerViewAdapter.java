@@ -92,7 +92,7 @@ public abstract class CRecyclerViewAdapter<T> extends RecyclerView.Adapter<CRecy
 
     @Override
     public void onBindViewHolder(CRecyclerViewViewHolder holder, int position) {
-        setConvertView(holder, mData.get(position), position);
+        setConvertView(holder, mData.get(position), holder.getAdapterPosition());
     }
 
     protected abstract void setConvertView(CRecyclerViewViewHolder holder, T item, int position);
