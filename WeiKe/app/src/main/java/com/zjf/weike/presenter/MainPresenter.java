@@ -11,7 +11,7 @@ import com.zjf.weike.view.viewimp.MainViewImp;
  * @version : 2016-12-19 下午 8:25
  */
 
-public class MainPresenter implements BasePresenter {
+public class MainPresenter implements BasePresenter<MainViewImp> {
 
     private long currentTime = 0;
     private MainViewImp mView;
@@ -32,7 +32,7 @@ public class MainPresenter implements BasePresenter {
     }
 
     @Override
-    public void onViewAttached(Object view) {
+    public void onViewAttached(MainViewImp view) {
 
     }
 

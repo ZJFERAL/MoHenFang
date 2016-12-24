@@ -7,4 +7,5 @@ package com.zjf.weike.view.viewimp;
 
 public interface PublishViewImp extends BaseViewImp{
     void published();
+    void dimissBottomSheetDialog();
 }

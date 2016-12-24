@@ -50,7 +50,7 @@ public class SelectPictureAsyncModel implements SelectPictureAsyncModelImp {
      * @param listener
      */
     @Override
-    public void getPicture(final String folderName, final OnAsyncModelListener<String> listener) {
+    public void getPicture(final String folderName, final OnAsyncModelListener<List<String>> listener) {
         mPictures.clear();
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
@@ -96,13 +96,14 @@ public class SelectPictureAsyncModel implements SelectPictureAsyncModelImp {
                 });
     }
 
+
     /**
      * 第一次获取文件夹
      *
      * @param listener
      */
     @Override
-    public void getData(final OnAsyncModelListener<ImageFolder> listener) {
+    public void getData(final OnAsyncModelListener<List<ImageFolder>> listener) {
         if (!Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED)) {
             listener.onFailure(App.getInstance().getString(R.string.nosdcard), 3);
@@ -187,5 +188,4 @@ public class SelectPictureAsyncModel implements SelectPictureAsyncModelImp {
                     }
                 });
     }
-
 }

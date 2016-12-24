@@ -26,7 +26,7 @@ public class SelectPicturePresenter implements BasePresenter {
     }
 
     public void getPicture(String folderName) {
-        mModel.getPicture(folderName, new OnAsyncModelListener<String>() {
+        mModel.getPicture(folderName, new OnAsyncModelListener<List<String>>() {
 
             @Override
             public void onFailure(String msg,int type) {
@@ -47,7 +47,7 @@ public class SelectPicturePresenter implements BasePresenter {
     @Override
     public void onViewAttached(final Object view) {
         isAttach = true;
-        mModel.getData(new OnAsyncModelListener<ImageFolder>() {
+        mModel.getData(new OnAsyncModelListener<List<ImageFolder>>() {
 
             @Override
             public void onFailure(String msg,int type) {

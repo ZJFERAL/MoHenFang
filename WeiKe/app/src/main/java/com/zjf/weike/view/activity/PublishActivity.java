@@ -1,8 +1,8 @@
 package com.zjf.weike.view.activity;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.provider.MediaStore;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -25,7 +25,6 @@ import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.PublishViewImp;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -52,16 +51,16 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     RecyclerView mRecyclerView;
 
     public static final int ABLUM_CODE = 1001;
-    public static final int CAMARE_CODE = 1002;
+    public static final int CAMERA_CODE = 1002;
 
     private ArrayList<String> mBitmaps;
     private PhotoAdapter mAdapter;
     private RecyclerView.LayoutManager mManager;
-    private BottomSheetDialog mDialog;
+    private BottomSheetDialog mBottomSheetDialog;
     private View mDialogView;
     private Button mBtnCamera, mBtnAlbum, mBtnCancel;
-    private Uri imageUri;
     private File mOutputImage;
+    private MenuItem mLocation;
 
     @Override
     public PublishPresenter create() {
@@ -74,7 +73,7 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
         mBitmaps = new ArrayList<>();
         mAdapter = new PhotoAdapter(this, mBitmaps, R.layout.publish_photo);
         mManager = new GridLayoutManager(this, 3);
-        mDialog = new BottomSheetDialog(this);
+        mBottomSheetDialog = new BottomSheetDialog(this);
     }
 
     @Override
@@ -87,7 +86,7 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
         mRecyclerView.setLayoutManager(mManager);
         mRecyclerView.setAdapter(mAdapter);
         mDialogView = LayoutInflater.from(this).inflate(R.layout.bottom_dialog_getpicture, null);
-        mDialog.setContentView(mDialogView);
+        mBottomSheetDialog.setContentView(mDialogView);
         mBtnCamera = (Button) mDialogView.findViewById(R.id.btn_camera);
         mBtnAlbum = (Button) mDialogView.findViewById(R.id.btn_fromlocal);
         mBtnCancel = (Button) mDialogView.findViewById(R.id.btn_cancle);
@@ -115,42 +114,18 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
                 mPresenter.publishInfo();
                 break;
             case R.id.btn_addPhoto:
-                mDialog.show();
+                mBottomSheetDialog.show();
                 break;
             case R.id.btn_camera:
-                mDialog.dismiss();
-                if (mAdapter.getItemCount() < 9) {
-                    startCamare();
-                } else {
-                    showSnakBar(getString(R.string.nomore), 1);
-                }
+                mOutputImage = mPresenter.startCamera(this, mAdapter.getItemCount(), CAMERA_CODE);
                 break;
             case R.id.btn_cancle:
-                mDialog.dismiss();
+                dimissBottomSheetDialog();
                 break;
             case R.id.btn_fromlocal:
-                Intent intent = new Intent(this, SelectPictureActivity.class);
-                intent.putStringArrayListExtra("alreadhave", mBitmaps);
-                startActivityForResult(intent, ABLUM_CODE);
-                mDialog.dismiss();
+                mPresenter.getAblumPicture(this, mBitmaps);
                 break;
         }
-    }
-
-    private void startCamare() {
-        mOutputImage = new File(getExternalCacheDir(), "output_image.jpg");
-        try {
-            if (mOutputImage.exists()) {
-                mOutputImage.delete();
-            }
-            mOutputImage.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        imageUri = Uri.fromFile(mOutputImage);
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(intent, CAMARE_CODE);
     }
 
     @Override
@@ -158,6 +133,14 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
         jumpTo(PublishActivity.this, MainActivity.class);
         finish();
     }
+
+    @Override
+    public void dimissBottomSheetDialog() {
+        if (mBottomSheetDialog != null && mBottomSheetDialog.isShowing()) {
+            mBottomSheetDialog.dismiss();
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -169,6 +152,7 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_location) {
             // TODO 获取位置
+            mLocation = item;
             item.setIcon(null);
             item.setTitle("北京");
         }
@@ -183,9 +167,11 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
                 ArrayList<String> picture = data.getStringArrayListExtra("picture");
                 mAdapter.flushData(picture);
             }
-            if (requestCode == CAMARE_CODE) {
-                mAdapter.getData().add(mOutputImage.getAbsolutePath());
-                mAdapter.notifyItemInserted(mAdapter.getItemCount());
+            if (requestCode == CAMERA_CODE) {
+                Bitmap bitmap = BitmapFactory.decodeFile(mOutputImage.getAbsolutePath());
+
+//                mAdapter.getData().add(mOutputImage.getAbsolutePath());
+//                mAdapter.notifyItemInserted(mAdapter.getItemCount() + 1);
             }
         }
     }
