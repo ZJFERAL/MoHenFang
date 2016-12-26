@@ -19,4 +19,8 @@ public interface SplashViewImp extends BaseViewImp {
 
     void showForceUpdataDialog();
 
+    void setBackGround(String url);
+
+    boolean isFirstStart(String version);
+
 }

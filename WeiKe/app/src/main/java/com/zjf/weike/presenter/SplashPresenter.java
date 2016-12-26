@@ -11,9 +11,12 @@ import com.zjf.weike.model.SplashModel;
 import com.zjf.weike.model.modelimp.SplashModelImp;
 import com.zjf.weike.presenter.base.BasePresenter;
 import com.zjf.weike.view.activity.GuideActivity;
+import com.zjf.weike.view.activity.MainActivity;
 import com.zjf.weike.view.viewimp.SplashViewImp;
 
 import io.reactivex.functions.Consumer;
+
+import static java.lang.Double.parseDouble;
 
 /**
  * @author :ZJF
@@ -28,14 +31,27 @@ public class SplashPresenter implements BasePresenter<SplashViewImp> {
     private boolean isAttached = false;
 
     public SplashPresenter(RxPermissions rxPermissions) {
-        mModel = new SplashModel();
         this.mPermissions = rxPermissions;
+        mModel = new SplashModel();
     }
 
     @Override
     public void onViewAttached(SplashViewImp view) {
         isAttached = true;
         this.mView = view;
+        mModel.getBackGround(new OnAsyncModelListener<String>() {
+            @Override
+            public void onFailure(String msg, int type) {
+
+            }
+
+            @Override
+            public void onSuccess(String list) {
+                if (isAttached) {
+                    mView.setBackGround(list);
+                }
+            }
+        });
         requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
     }
 
@@ -82,12 +98,21 @@ public class SplashPresenter implements BasePresenter<SplashViewImp> {
 
             @Override
             public void onSuccess(String versioncode) {
-                if (versioncode.equals(localCode)) {
-                    if (isAttached) {
-                        mView.startApp(GuideActivity.class, 2000);
-                    }
-                } else {
-                    //升级
+                if (isAttached) {
+                    if (versioncode.equals(localCode)) {
+                        if (mView.isFirstStart(versioncode)) {
+                            mView.startApp(GuideActivity.class, 2000);
+                        } else {
+                            mView.startApp(MainActivity.class, 2000);
+                        }
+
+                    } else {
+                        if (parseDouble(versioncode) - parseDouble(localCode) >= 3f) {
+                            mView.showForceUpdataDialog();
+                        } else {
+                            mView.showUpdataDialog();
+                        }
+                    }// # equals
                 }
             }
         });

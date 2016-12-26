@@ -58,7 +58,7 @@ public class LoginActivity extends MVPActivity<LoginPresenter> implements LoginV
         switch (view.getId()) {
             case R.id.btn_login:
                 // TODO 登陆
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                jumpTo(this, MainActivity.class, true);
                 break;
             case R.id.text_register:
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
@@ -79,7 +79,7 @@ public class LoginActivity extends MVPActivity<LoginPresenter> implements LoginV
     }
 
     @Override
-    public void showSnakBar(String msg,int type) {
-        SnackBarUtil.ShortSnackbar(mActivityLogin, msg,1).show();
+    public void showSnakBar(String msg, int type) {
+        SnackBarUtil.ShortSnackbar(mActivityLogin, msg, 1).show();
     }
 }

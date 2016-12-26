@@ -16,8 +16,8 @@ public class MainPresenter implements BasePresenter<MainViewImp> {
     private long currentTime = 0;
     private MainViewImp mView;
 
-    public MainPresenter(MainViewImp view) {
-        mView = view;
+    public MainPresenter() {
+
     }
 
 
@@ -33,7 +33,7 @@ public class MainPresenter implements BasePresenter<MainViewImp> {
 
     @Override
     public void onViewAttached(MainViewImp view) {
-
+        this.mView = view;
     }
 
     @Override

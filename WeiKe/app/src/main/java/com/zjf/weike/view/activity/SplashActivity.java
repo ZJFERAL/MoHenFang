@@ -1,8 +1,13 @@
 package com.zjf.weike.view.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.zjf.weike.App;
 import com.zjf.weike.R;
 import com.zjf.weike.impl.OnPermissionResultListener;
 import com.zjf.weike.presenter.SplashPresenter;
@@ -12,6 +17,7 @@ import com.zjf.weike.view.viewimp.SplashViewImp;
 
 public class SplashActivity extends MVPActivity<SplashPresenter> implements SplashViewImp {
 
+    private ImageView mView;
 
     @Override
     public void initVariables() {
@@ -23,6 +29,8 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
+        mView = (ImageView) findViewById(R.id.bg);
+        mView.setAlpha(0f);
     }
 
 
@@ -34,8 +42,7 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
 
     @Override
     public void startApp(Class<? extends Activity> aClazz, int delay) {
-        jumpTo(SplashActivity.this, aClazz, delay);
-        finish();
+        jumpTo(SplashActivity.this, aClazz, delay, true);
     }
 
     @Override
@@ -50,7 +57,8 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
 
     @Override
     public void onAllPermissionPass() {
-        mPresenter.requestVersionCode("1.00");
+        mPresenter.requestVersionCode(getSharedPreferences(App.CONFIG,
+                Context.MODE_PRIVATE).getString("VersionCode", "1.00"));
     }
 
     @Override
@@ -61,6 +69,24 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
     @Override
     public void showForceUpdataDialog() {
 
+    }
+
+    @Override
+    public void setBackGround(String url) {
+        Glide.with(this)
+                .load(url)
+                .asBitmap()
+                .into(mView);
+        mView.animate().setDuration(2000)
+                .alpha(1)
+                .setInterpolator(new AccelerateDecelerateInterpolator())
+                .start();
+    }
+
+    @Override
+    public boolean isFirstStart(String version) {
+        return getSharedPreferences(App.CONFIG,
+                Context.MODE_PRIVATE).getBoolean(version, true);
     }
 
     @Override

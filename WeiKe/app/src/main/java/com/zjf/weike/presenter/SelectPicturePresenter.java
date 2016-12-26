@@ -14,14 +14,13 @@ import java.util.List;
  * @version : 2016-12-22 下午 3:19
  */
 
-public class SelectPicturePresenter implements BasePresenter {
+public class SelectPicturePresenter implements BasePresenter<SelectPictureViewImp> {
 
     private boolean isAttach = false;
     private SelectPictureViewImp mView;
     private SelectPictureAsyncModelImp mModel;
 
-    public SelectPicturePresenter(SelectPictureViewImp view) {
-        mView = view;
+    public SelectPicturePresenter() {
         mModel = new SelectPictureAsyncModel();
     }
 
@@ -29,7 +28,7 @@ public class SelectPicturePresenter implements BasePresenter {
         mModel.getPicture(folderName, new OnAsyncModelListener<List<String>>() {
 
             @Override
-            public void onFailure(String msg,int type) {
+            public void onFailure(String msg, int type) {
                 if (isAttach) {
                     mView.showSnakBar(msg, type);
                 }
@@ -45,12 +44,13 @@ public class SelectPicturePresenter implements BasePresenter {
     }
 
     @Override
-    public void onViewAttached(final Object view) {
+    public void onViewAttached(SelectPictureViewImp view) {
+        this.mView = view;
         isAttach = true;
         mModel.getData(new OnAsyncModelListener<List<ImageFolder>>() {
 
             @Override
-            public void onFailure(String msg,int type) {
+            public void onFailure(String msg, int type) {
                 if (isAttach) {
                     mView.showSnakBar(msg, type);
                 }
@@ -64,6 +64,7 @@ public class SelectPicturePresenter implements BasePresenter {
             }
         });
     }
+
 
     @Override
     public void onViewDeached() {

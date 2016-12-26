@@ -9,9 +9,11 @@ import com.zjf.weike.view.viewimp.LoginViewImp;
  */
 
 public class LoginPresenter implements BasePresenter<LoginViewImp> {
+    private LoginViewImp mView;
+
     @Override
     public void onViewAttached(LoginViewImp view) {
-
+        this.mView = view;
     }
 
     @Override

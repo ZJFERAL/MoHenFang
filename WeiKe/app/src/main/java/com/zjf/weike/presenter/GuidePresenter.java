@@ -14,25 +14,29 @@ public class GuidePresenter implements BasePresenter<GuideViewImp> {
 
     private BaseModelImp mModel;
     private GuideViewImp mView;
+    private boolean isAttached = false;
 
-    public GuidePresenter(GuideViewImp view) {
-        mView = view;
+    public GuidePresenter() {
         mModel = new GuideModel();
     }
 
 
     @Override
     public void onViewAttached(GuideViewImp view) {
-       mView.setFragment(mModel.getData());
+        isAttached = true;
+        this.mView = view;
+        mView.setFragment(mModel.getData());
     }
 
     @Override
     public void onViewDeached() {
-
+        isAttached = false;
     }
 
     @Override
     public void onDestroyed() {
-
+        isAttached = false;
+        mView = null;
+        mModel = null;
     }
 }

@@ -60,7 +60,7 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
 
     @Override
     public PublishPresenter create() {
-        return new PublishPresenter(this);
+        return new PublishPresenter();
     }
 
     @Override
@@ -129,8 +129,7 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
 
     @Override
     public void published() {
-        jumpTo(PublishActivity.this, MainActivity.class);
-        finish();
+        jumpTo(PublishActivity.this, MainActivity.class,true);
     }
 
     @Override
@@ -171,6 +170,6 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mPresenter.onActivityResult(requestCode, resultCode, data,RESULT_OK);
+        mPresenter.onActivityResult(requestCode, resultCode, data, RESULT_OK);
     }
 }

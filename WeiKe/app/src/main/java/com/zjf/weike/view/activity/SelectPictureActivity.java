@@ -179,7 +179,7 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
 
     @Override
     public SelectPicturePresenter create() {
-        return new SelectPicturePresenter(this);
+        return new SelectPicturePresenter();
     }
 
 

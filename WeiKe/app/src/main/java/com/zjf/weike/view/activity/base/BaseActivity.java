@@ -50,21 +50,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay) {
-        mTo.jumpTo(activity, aClazz, delay);
+    public void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay,boolean isFinish) {
+        mTo.jumpTo(activity, aClazz, delay,isFinish);
     }
 
-    public void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay, final Bundle bundle) {
-        mTo.jumpTo(activity, aClazz, delay, bundle);
+    public void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay, final Bundle bundle,boolean isFinish) {
+        mTo.jumpTo(activity, aClazz, delay, bundle,isFinish);
     }
 
 
-    public void jumpTo(Activity activity, Class<? extends Activity> aClazz, Bundle bundle) {
-        mTo.jumpTo(activity, aClazz, bundle);
+    public void jumpTo(Activity activity, Class<? extends Activity> aClazz, Bundle bundle,boolean isFinish) {
+        mTo.jumpTo(activity, aClazz, bundle,isFinish);
     }
 
-    public void jumpTo(Activity activity, Class<? extends Activity> aClazz) {
-        mTo.jumpTo(activity, aClazz);
+    public void jumpTo(Activity activity, Class<? extends Activity> aClazz,boolean isFinish) {
+        mTo.jumpTo(activity, aClazz,isFinish);
     }
 
     @Override

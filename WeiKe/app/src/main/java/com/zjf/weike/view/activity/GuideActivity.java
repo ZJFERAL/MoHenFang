@@ -45,17 +45,17 @@ public class GuideActivity extends MVPActivity<GuidePresenter> implements GuideV
 
     @Override
     public GuidePresenter create() {
-        return new GuidePresenter(this);
+        return new GuidePresenter();
     }
 
     @Override
-    public void showSnakBar(String msg,int type) {
+    public void showSnakBar(String msg, int type) {
 
     }
 
     @Override
     public void setFragment(List<Fragment> fragments) {
-        mAdapter = new FragmentAdapter(getSupportFragmentManager(),fragments);
+        mAdapter = new FragmentAdapter(getSupportFragmentManager(), fragments);
         mCircleindicator.setIndicatorMode(CircleIndicator.Mode.OUTSIDE);
         mCircleindicator.setIndicatorRadius(10);//圆的大小
         mCircleindicator.setIndicatorMargin(10);//间隔

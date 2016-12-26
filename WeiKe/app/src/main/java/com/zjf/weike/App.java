@@ -14,6 +14,7 @@ import com.zjf.weike.util.NativeUtil;
 public class App extends Application {
 
     private static App instance;
+    public static final String CONFIG = "config";
 
     @Override
     public void onCreate() {

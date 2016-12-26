@@ -54,7 +54,7 @@ public class MainActivity extends MVPActivity<MainPresenter>
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpTo(MainActivity.this, PublishActivity.class);
+                jumpTo(MainActivity.this, PublishActivity.class,false);
             }
         });
     }
@@ -110,12 +110,12 @@ public class MainActivity extends MVPActivity<MainPresenter>
 
     @Override
     public MainPresenter create() {
-        return new MainPresenter(this);
+        return new MainPresenter();
     }
 
     @Override
-    public void showSnakBar(String msg,int type) {
-        SnackBarUtil.ShortSnackbar(mCoordinatorLayout, msg,type).show();
+    public void showSnakBar(String msg, int type) {
+        SnackBarUtil.ShortSnackbar(mCoordinatorLayout, msg, type).show();
     }
 
     @Override

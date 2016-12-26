@@ -9,12 +9,12 @@ import android.os.Bundle;
  */
 
 public interface JumpTo {
-    void jumpTo(Activity activity, Class<? extends Activity> aClazz);
+    void jumpTo(Activity activity, Class<? extends Activity> aClazz,boolean isfinish);
 
-    void jumpTo(Activity activity, Class<? extends Activity> aClazz, Bundle bundle);
+    void jumpTo(Activity activity, Class<? extends Activity> aClazz, Bundle bundle,boolean isfinish);
 
-    void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay);
+    void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay,boolean isfinish);
 
-    void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay, final Bundle bundle);
+    void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay, final Bundle bundle,boolean isfinish);
 
 }

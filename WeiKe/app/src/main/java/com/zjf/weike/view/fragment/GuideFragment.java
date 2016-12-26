@@ -104,16 +104,13 @@ public class GuideFragment extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_guide:
-                jumpTo(getActivity(), MainActivity.class);
-                getActivity().finish();
+                jumpTo(getActivity(), MainActivity.class, true);
                 break;
             case R.id.btn_register:
-                jumpTo(getActivity(), RegisterActivity.class);
-                getActivity().finish();
+                jumpTo(getActivity(), RegisterActivity.class, false);
                 break;
             case R.id.btn_login:
-                jumpTo(getActivity(), LoginActivity.class);
-                getActivity().finish();
+                jumpTo(getActivity(), LoginActivity.class, false);
                 break;
         }
     }

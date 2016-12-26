@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * @version : 2016-12-21 下午 5:02
  */
 
-public class PublishPresenter implements BasePresenter {
+public class PublishPresenter implements BasePresenter<PublishViewImp> {
 
     public static final int ABLUM_CODE = 1001;
     public static final int CAMERA_CODE = 2002;
@@ -30,8 +30,7 @@ public class PublishPresenter implements BasePresenter {
 
     private PublishViewImp mView;
 
-    public PublishPresenter(PublishViewImp view) {
-        mView = view;
+    public PublishPresenter() {
     }
 
     public void publishInfo() {
@@ -70,8 +69,11 @@ public class PublishPresenter implements BasePresenter {
         }
     }
 
+
+
     @Override
-    public void onViewAttached(Object view) {
+    public void onViewAttached(PublishViewImp view) {
+        this.mView = view;
         isAttached = true;
     }
 
