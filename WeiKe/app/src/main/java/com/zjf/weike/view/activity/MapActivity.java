@@ -2,7 +2,11 @@ package com.zjf.weike.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.widget.FrameLayout;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -18,15 +22,31 @@ import com.zjf.weike.R;
 import com.zjf.weike.util.SnackBarUtil;
 import com.zjf.weike.view.activity.base.BaseActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MapActivity extends BaseActivity implements LocationSource, AMapLocationListener {
 
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.map)
+    MapView mMap;
+    @BindView(R.id.tabLayout)
+    TabLayout mTabLayout;
+    @BindView(R.id.viewPager)
+    ViewPager mViewPager;
+    @BindView(R.id.bottom_sheet)
+    FrameLayout mBottomSheet;
+    @BindView(R.id.fab_done)
+    FloatingActionButton mFabDone;
+    @BindView(R.id.activity_map)
+    CoordinatorLayout mActivityMap;
+
     private AMap aMap;//定义一个地图对象
-    private MapView mMapView;
     private OnLocationChangedListener mListener;
     private AMapLocationClient mClient;
     private AMapLocationClientOption mOption;
-    private CoordinatorLayout mLayout;
-    private Toolbar mToolbar;
 
 
     @Override
@@ -37,31 +57,29 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
     @Override
     public void initView() {
         setContentView(R.layout.activity_map);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         mToolbar.setTitle(getString(R.string.chooselocation));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mLayout = (CoordinatorLayout) findViewById(R.id.activity_map);
-        mMapView = (MapView) findViewById(R.id.map);
-        mMapView.onCreate(mBundle);
+        mMap.onCreate(mBundle);
         if (aMap == null) {
-            aMap = mMapView.getMap();
+            aMap = mMap.getMap();
         }
 
         aMap.setMyLocationEnabled(true);
+        aMap.setLocationSource(this);
         aMap.getUiSettings().setMyLocationButtonEnabled(true);
 
         MyLocationStyle myLocationStyle = new MyLocationStyle();
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory.
                 fromResource(R.drawable.ic_location_on_blue_500_24dp));
         aMap.setMyLocationStyle(myLocationStyle);
-
     }
 
     @Override
     public void setListener() {
-        aMap.setLocationSource(this);
+
     }
 
     @Override
@@ -86,15 +104,19 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
                 mListener.onLocationChanged(amapLocation);
                 aMap.moveCamera(CameraUpdateFactory.zoomTo(18));
             } else {
-                SnackBarUtil.ShortSnackbar(mLayout, "定位失败", 1).show();
+                SnackBarUtil.ShortSnackbar(mActivityMap, getString(R.string.locationfailure), 1).show();
             }
         }
+    }
+
+    @OnClick(R.id.fab_done)
+    public void onClick() {
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mMapView.onDestroy();
+        mMap.onDestroy();
         if (null != mClient) {
             mClient.onDestroy();
         }
@@ -103,14 +125,14 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
     @Override
     public void onResume() {
         super.onResume();
-        mMapView.onResume();
+        mMap.onResume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
         deactivate();
-        mMapView.onPause();
+        mMap.onPause();
     }
 
     @Override
@@ -123,9 +145,10 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
         mClient = null;
     }
 
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mMapView.onSaveInstanceState(outState);
+        mMap.onSaveInstanceState(outState);
     }
 }

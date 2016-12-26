@@ -64,4 +64,5 @@
     <string name="nohint">不再提醒</string>
     <string name="mustupdata">您当前的版本过低，升级您的应用才能继续使用</string>
     <string name="chooselocation">地图选点</string>
+    <string name="locationfailure">定位失败</string>
 </resources>
