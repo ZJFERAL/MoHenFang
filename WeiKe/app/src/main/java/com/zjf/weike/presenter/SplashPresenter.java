@@ -1,6 +1,7 @@
 package com.zjf.weike.presenter;
 
 import android.Manifest;
+import android.content.Intent;
 
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -118,7 +119,9 @@ public class SplashPresenter implements BasePresenter<SplashViewImp> {
     }
 
     public void updata() {
-        // TODO 下载最新的安装包
+        Intent intent = new Intent();
+        intent.setAction("com.zjf.weike.updata.broadcast");
+        mView.sendUpdataBroadcast(intent);
     }
 
     public void startApp(String code) {
@@ -140,4 +143,5 @@ public class SplashPresenter implements BasePresenter<SplashViewImp> {
         mView = null;
         mModel = null;
     }
+
 }

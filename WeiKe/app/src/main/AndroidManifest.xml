@@ -78,6 +78,16 @@
             android:configChanges="screenSize"
             android:screenOrientation="portrait">
         </activity>
+
+        <receiver android:name=".receiver.UpdataReceiver">
+            <intent-filter>
+                <action android:name="com.zjf.weike.updata.broadcast"/>
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".service.UpdataService">
+
+        </service>
     </application>
 
 </manifest>

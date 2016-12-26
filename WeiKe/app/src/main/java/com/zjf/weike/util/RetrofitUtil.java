@@ -2,6 +2,9 @@ package com.zjf.weike.util;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -12,8 +15,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitUtil {
 
+    private static OkHttpClient.Builder builder;
+
+    static {
+        builder = new OkHttpClient.Builder();
+        builder.connectTimeout(8, TimeUnit.SECONDS);
+    }
+
     public static Retrofit getClient(String baseUrl) {
+
         return new Retrofit.Builder()
+                .client(builder.build())
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

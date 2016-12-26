@@ -2,6 +2,7 @@ package com.zjf.weike.view.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.CoordinatorLayout;
 import android.view.WindowManager;
@@ -89,6 +90,11 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
     }
 
     @Override
+    public void sendUpdataBroadcast(Intent intent) {
+        sendBroadcast(intent);
+    }
+
+    @Override
     public void showUpdataDialog(final String newVersionCode) {
         DialogUtil.showUpdataDialog(this, new OnAsyncModel2SListener<String, String>() {
             @Override
@@ -120,6 +126,7 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
             @Override
             public void onSuccess(String list) {
                 mPresenter.updata();
+                finish();
             }
         });
     }

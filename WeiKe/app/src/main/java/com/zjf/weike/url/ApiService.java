@@ -9,7 +9,7 @@ import retrofit2.http.GET;
  * @version : 2016-12-26 上午 9:56
  */
 
-public interface SplashUrl {
+public interface ApiService {
 
     @GET(value = "api/bing_pic")
     Observable<ResponseBody> getBackGround();

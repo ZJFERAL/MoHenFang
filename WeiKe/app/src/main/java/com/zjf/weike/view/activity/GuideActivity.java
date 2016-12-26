@@ -53,6 +53,8 @@ public class GuideActivity extends MVPActivity<GuidePresenter> implements GuideV
 
     }
 
+
+
     @Override
     public void setFragment(List<Fragment> fragments) {
         mAdapter = new FragmentAdapter(getSupportFragmentManager(), fragments);

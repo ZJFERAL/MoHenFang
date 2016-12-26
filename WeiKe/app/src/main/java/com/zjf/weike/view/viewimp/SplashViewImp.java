@@ -1,6 +1,7 @@
 package com.zjf.weike.view.viewimp;
 
 import android.app.Activity;
+import android.content.Intent;
 
 /**
  * @author :ZJF
@@ -26,4 +27,6 @@ public interface SplashViewImp extends BaseViewImp {
     String getIgnoreVersionCode();
 
     void exit();
+
+    void sendUpdataBroadcast(Intent intent);
 }

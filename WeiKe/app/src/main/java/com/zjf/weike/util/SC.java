@@ -12,4 +12,5 @@ public class SC {
     public static final String USER_PWD = "USER_PWD";
     public static final String DEFAULT_VERSION_CODE = "1.00";
     public static final String IGNORE_VERSION = "IGNORE_VERSION";
+    public static final String UPDATA_BROADCAST = "com.zjf.weike.updata.broadcast";
 }
