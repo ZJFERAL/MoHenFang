@@ -1,6 +1,8 @@
 package com.zjf.weike.view.fragment;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.zjf.weike.R;
+import com.zjf.weike.util.SC;
 import com.zjf.weike.view.activity.LoginActivity;
 import com.zjf.weike.view.activity.MainActivity;
 import com.zjf.weike.view.activity.RegisterActivity;
@@ -63,17 +66,12 @@ public class GuideFragment extends BaseFragment {
                          Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_guide, container, false);
         ButterKnife.bind(this, view);
+        setVisibility();
         return view;
 
     }
 
-    @Override
-    public void initListener() {
-
-    }
-
-    @Override
-    public void loaderData() {
+    private void setVisibility() {
         switch (page) {
             case 1:
                 Glide.with(this)
@@ -100,6 +98,16 @@ public class GuideFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void initListener() {
+
+    }
+
+    @Override
+    public void loaderData() {
+
+    }
+
     @OnClick({R.id.btn_guide, R.id.btn_register, R.id.btn_login})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -113,5 +121,17 @@ public class GuideFragment extends BaseFragment {
                 jumpTo(getActivity(), LoginActivity.class, false);
                 break;
         }
+        saveConfig();
+    }
+
+    private void saveConfig() {
+        SharedPreferences preferences = getActivity()
+                .getSharedPreferences(SC.CONFIG, Context.MODE_PRIVATE);
+        preferences
+                .edit()
+                .putBoolean(preferences.getString(SC.VERSION_CODE, SC.DEFAULT_VERSION_CODE), false)
+                .putString(SC.USER_NAME, null)
+                .putString(SC.USER_PWD, null)
+                .apply();
     }
 }

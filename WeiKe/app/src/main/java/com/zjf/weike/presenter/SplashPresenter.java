@@ -86,31 +86,30 @@ public class SplashPresenter implements BasePresenter<SplashViewImp> {
                 });
     }
 
-
     public void requestVersionCode(final String localCode) {
         mModel.getData(new OnAsyncModelListener<String>() {
             @Override
             public void onFailure(String msg, int type) {
                 if (isAttached) {
                     mView.showSnakBar(msg, type);
+                    startApp(localCode);
                 }
             }
 
             @Override
             public void onSuccess(String versioncode) {
                 if (isAttached) {
-                    if (versioncode.equals(localCode)) {
-                        if (mView.isFirstStart(versioncode)) {
-                            mView.startApp(GuideActivity.class, 2000);
-                        } else {
-                            mView.startApp(MainActivity.class, 2000);
-                        }
-
+                    if (versioncode.equals(localCode)) {//没有升级
+                        startApp(localCode);
                     } else {
-                        if (parseDouble(versioncode) - parseDouble(localCode) >= 3f) {
+                        if (parseDouble(versioncode) - parseDouble(localCode) >= 3f) {//强制升级
                             mView.showForceUpdataDialog();
                         } else {
-                            mView.showUpdataDialog();
+                            if (versioncode.equals(mView.getIgnoreVersionCode())) {//已忽略版本
+                                startApp(localCode);
+                            } else {//新版本，提醒升级
+                                mView.showUpdataDialog(versioncode);
+                            }
                         }
                     }// # equals
                 }
@@ -118,6 +117,17 @@ public class SplashPresenter implements BasePresenter<SplashViewImp> {
         });
     }
 
+    public void updata() {
+        // TODO 下载最新的安装包
+    }
+
+    public void startApp(String code) {
+        if (mView.isFirstStart(code)) {
+            mView.startApp(GuideActivity.class, 3000);
+        } else {
+            mView.startApp(MainActivity.class, 3000);
+        }
+    }
 
     @Override
     public void onViewDeached() {

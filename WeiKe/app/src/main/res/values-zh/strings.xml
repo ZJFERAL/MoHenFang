@@ -40,6 +40,7 @@
     <string name="fromlocal">从相册中获取</string>
     <string name="fromcamera">拍照</string>
     <string name="cancel">取消</string>
+    <string name="sure">确定</string>
     <string name="switchfolder">切换文件夹</string>
     <string name="failure">我们似乎遇到了一些状况</string>
     <string name="netfailure">网络君似乎遇到了一些状况</string>
@@ -53,4 +54,13 @@
     <string name="nosdcard">没有外置存储设备</string>
     <string name="ninepicture">不能选择更多了</string>
     <string name="nomore">不能再添加了</string>
+    <string name="less">缺少</string>
+    <string name="permission"> 的权限</string>
+    <string name="gotogrant">是否去授予</string>
+    <string name="gotosetting">去设置</string>
+    <string name="newversion">有新版本了，快去升级吧！</string>
+    <string name="instanceupdata">立刻升级</string>
+    <string name="nexttime">下次再说</string>
+    <string name="nohint">不再提醒</string>
+    <string name="mustupdata">您当前的版本过低，升级您的应用才能继续使用</string>
 </resources>

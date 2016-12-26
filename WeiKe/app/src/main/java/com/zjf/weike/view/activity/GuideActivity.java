@@ -57,7 +57,7 @@ public class GuideActivity extends MVPActivity<GuidePresenter> implements GuideV
     public void setFragment(List<Fragment> fragments) {
         mAdapter = new FragmentAdapter(getSupportFragmentManager(), fragments);
         mCircleindicator.setIndicatorMode(CircleIndicator.Mode.OUTSIDE);
-        mCircleindicator.setIndicatorRadius(10);//圆的大小
+        mCircleindicator.setIndicatorRadius(7);//圆的大小
         mCircleindicator.setIndicatorMargin(10);//间隔
         mCircleindicator.setViewPager(mViewPager, fragments.size());
         mViewPager.setAdapter(mAdapter);

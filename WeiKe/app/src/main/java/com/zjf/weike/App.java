@@ -14,7 +14,7 @@ import com.zjf.weike.util.NativeUtil;
 public class App extends Application {
 
     private static App instance;
-    public static final String CONFIG = "config";
+
 
     @Override
     public void onCreate() {
@@ -30,5 +30,9 @@ public class App extends Application {
 
     public static App getInstance() {
         return instance;
+    }
+
+    public static String getStringRes(int id) {
+        return instance.getString(id);
     }
 }

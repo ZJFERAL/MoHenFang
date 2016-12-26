@@ -38,6 +38,7 @@
     <string name="fromlocal">From photo album</string>
     <string name="fromcamera">Take photo</string>
     <string name="cancel">Cancel</string>
+    <string name="sure">Confirm</string>
     <string name="switchfolder">Switch the folder</string>
     <string name="failure">We seem to have a few problems</string>
     <string name="netfailure">Network is not smooth</string>
@@ -51,4 +52,13 @@
     <string name="nosdcard">No SD card</string>
     <string name="ninepicture">Can not choose more</string>
     <string name="nomore">Can\'t add</string>
+    <string name="less">Lack the permission which named</string>
+    <string name="permission"> </string>
+    <string name="gotogrant">Go to grant the permission</string>
+    <string name="gotosetting">Setting</string>
+    <string name="newversion">Have a new version, quick to upgrade!</string>
+    <string name="instanceupdata">Upgrade immediately</string>
+    <string name="nexttime">The next time</string>
+    <string name="nohint">No longer remind</string>
+    <string name="mustupdata">Your current version is too low, upgrade your application can continue to use</string>
 </resources>

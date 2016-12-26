@@ -15,7 +15,7 @@ public interface SplashViewImp extends BaseViewImp {
 
     void onAllPermissionPass();
 
-    void showUpdataDialog();
+    void showUpdataDialog(String newVersionCode);
 
     void showForceUpdataDialog();
 
@@ -23,4 +23,7 @@ public interface SplashViewImp extends BaseViewImp {
 
     boolean isFirstStart(String version);
 
+    String getIgnoreVersionCode();
+
+    void exit();
 }
