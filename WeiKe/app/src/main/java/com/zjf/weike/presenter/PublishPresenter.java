@@ -22,6 +22,7 @@ public class PublishPresenter implements BasePresenter<PublishViewImp> {
 
     public static final int ABLUM_CODE = 1001;
     public static final int CAMERA_CODE = 2002;
+    public static final int LOCATION_CODE = 3003;
     private File mOutputImage;
     private boolean isAttached = false;
 
@@ -41,8 +42,8 @@ public class PublishPresenter implements BasePresenter<PublishViewImp> {
         mView.dimissBottomSheetDialog();
     }
 
-    public void getLoaction() {
-
+    public void getLoaction(Intent intent) {
+        mView.jumpToForResult(intent,LOCATION_CODE);
     }
 
     public void startCamera(File outputImage, int count) {

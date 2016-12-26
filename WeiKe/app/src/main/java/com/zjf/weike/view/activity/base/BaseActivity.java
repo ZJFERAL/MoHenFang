@@ -14,10 +14,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private JumpTo mTo;
     protected RxPermissions mPermissions;
+    protected Bundle mBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.mBundle = savedInstanceState;
         mTo = new JumpInto();
         mPermissions = new RxPermissions(this);
         initVariables();
@@ -50,21 +52,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay,boolean isFinish) {
-        mTo.jumpTo(activity, aClazz, delay,isFinish);
+    public void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay, boolean isFinish) {
+        mTo.jumpTo(activity, aClazz, delay, isFinish);
     }
 
-    public void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay, final Bundle bundle,boolean isFinish) {
-        mTo.jumpTo(activity, aClazz, delay, bundle,isFinish);
+    public void jumpTo(final Activity activity, final Class<? extends Activity> aClazz, int delay, final Bundle bundle, boolean isFinish) {
+        mTo.jumpTo(activity, aClazz, delay, bundle, isFinish);
     }
 
 
-    public void jumpTo(Activity activity, Class<? extends Activity> aClazz, Bundle bundle,boolean isFinish) {
-        mTo.jumpTo(activity, aClazz, bundle,isFinish);
+    public void jumpTo(Activity activity, Class<? extends Activity> aClazz, Bundle bundle, boolean isFinish) {
+        mTo.jumpTo(activity, aClazz, bundle, isFinish);
     }
 
-    public void jumpTo(Activity activity, Class<? extends Activity> aClazz,boolean isFinish) {
-        mTo.jumpTo(activity, aClazz,isFinish);
+    public void jumpTo(Activity activity, Class<? extends Activity> aClazz, boolean isFinish) {
+        mTo.jumpTo(activity, aClazz, isFinish);
     }
 
     @Override

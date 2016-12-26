@@ -49,6 +49,7 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile files('libs/umeng-analytics-v6.0.4.jar')
     compile files('libs/utdid4all-1.0.4.jar')
-    compile files('libs/AMap_Location_V3.2.0_20161205.jar')
-    compile files('libs/AMap2DMap_2.9.3_AMapLocation_3.2.0_20161205.jar')
+    compile files('libs/AMap_Location_V3.1.0_20161027.jar')
+    compile files('libs/Amap_2DMap_V2.9.2_20161026.jar')
+    compile files('libs/AMap_Search_V3.6.1_20161122.jar')
 }

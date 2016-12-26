@@ -129,7 +129,7 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
 
     @Override
     public void published() {
-        jumpTo(PublishActivity.this, MainActivity.class,true);
+        jumpTo(PublishActivity.this, MainActivity.class, true);
     }
 
     @Override
@@ -164,10 +164,8 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_location) {
-            // TODO 获取位置
             mLocation = item;
-            item.setIcon(null);
-            item.setTitle("北京");
+            mPresenter.getLoaction(new Intent(this, MapActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

@@ -60,4 +60,7 @@
     <string name="nexttime">The next time</string>
     <string name="nohint">No longer remind</string>
     <string name="mustupdata">Your current version is too low, upgrade your application can continue to use</string>
+    <string name="chooselocation">Choose location point</string>
+
+
 </resources>

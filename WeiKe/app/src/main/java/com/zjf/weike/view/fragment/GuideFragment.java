@@ -100,7 +100,6 @@ public class GuideFragment extends BaseFragment {
 
     @Override
     public void initListener() {
-
     }
 
     @Override
