@@ -1,15 +1,12 @@
 package com.zjf.weike.presenter;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 
 import com.zjf.weike.App;
 import com.zjf.weike.R;
 import com.zjf.weike.presenter.base.BasePresenter;
-import com.zjf.weike.util.LogUtil;
 import com.zjf.weike.view.viewimp.PublishViewImp;
 
 import java.io.File;
@@ -70,7 +67,6 @@ public class PublishPresenter implements BasePresenter<PublishViewImp> {
     }
 
 
-
     @Override
     public void onViewAttached(PublishViewImp view) {
         this.mView = view;
@@ -92,13 +88,15 @@ public class PublishPresenter implements BasePresenter<PublishViewImp> {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data, int resultOk) {
-        if (resultCode == resultOk && data != null) {
+        if (resultCode == resultOk) {
             if (requestCode == ABLUM_CODE) {
-                ArrayList<String> picture = data.getStringArrayListExtra("picture");
-                mView.flushData(picture);
+                if (data != null) {
+                    ArrayList<String> picture = data.getStringArrayListExtra("picture");
+                    mView.flushData(picture);
+                }
             } else if (requestCode == CAMERA_CODE) {
-                Bitmap bitmap = BitmapFactory.decodeFile(mOutputImage.getAbsolutePath());
-                LogUtil.e(bitmap.toString().length() + "");
+                String path = mOutputImage.getAbsolutePath();
+                mView.addCameraPicture(path);
             }
         }
     }

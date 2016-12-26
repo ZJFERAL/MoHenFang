@@ -6,4 +6,5 @@ package com.zjf.weike.view.viewimp;
  */
 
 public interface LoginViewImp extends BaseViewImp{
+    void loginToMain();
 }

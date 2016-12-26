@@ -19,7 +19,7 @@ public class RetrofitUtil {
 
     static {
         builder = new OkHttpClient.Builder();
-        builder.connectTimeout(8, TimeUnit.SECONDS);
+        builder.connectTimeout(3, TimeUnit.SECONDS);
     }
 
     public static Retrofit getClient(String baseUrl) {

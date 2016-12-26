@@ -149,6 +149,11 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
         mAdapter.flushData(pictures);
     }
 
+    @Override
+    public void addCameraPicture(String path) {
+        mAdapter.addItemData(path);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

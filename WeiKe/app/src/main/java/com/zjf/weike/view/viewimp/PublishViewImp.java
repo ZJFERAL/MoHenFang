@@ -19,4 +19,6 @@ public interface PublishViewImp extends BaseViewImp {
 
     void flushData(List<String> pictures);
 
+    void addCameraPicture(String path);
+
 }
