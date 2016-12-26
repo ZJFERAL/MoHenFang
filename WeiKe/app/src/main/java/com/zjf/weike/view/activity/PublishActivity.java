@@ -1,8 +1,6 @@
 package com.zjf.weike.view.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -26,6 +24,7 @@ import com.zjf.weike.view.viewimp.PublishViewImp;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,8 +49,6 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
-    public static final int ABLUM_CODE = 1001;
-    public static final int CAMERA_CODE = 1002;
 
     private ArrayList<String> mBitmaps;
     private PhotoAdapter mAdapter;
@@ -59,7 +56,6 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     private BottomSheetDialog mBottomSheetDialog;
     private View mDialogView;
     private Button mBtnCamera, mBtnAlbum, mBtnCancel;
-    private File mOutputImage;
     private MenuItem mLocation;
 
     @Override
@@ -117,13 +113,16 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
                 mBottomSheetDialog.show();
                 break;
             case R.id.btn_camera:
-                mOutputImage = mPresenter.startCamera(this, mAdapter.getItemCount(), CAMERA_CODE);
+                File outputImage = new File(getExternalCacheDir(),
+                        System.currentTimeMillis() + "_oi.jpg");
+                mPresenter.startCamera(outputImage, mAdapter.getItemCount());
                 break;
             case R.id.btn_cancle:
                 dimissBottomSheetDialog();
                 break;
             case R.id.btn_fromlocal:
-                mPresenter.getAblumPicture(this, mBitmaps);
+                Intent intent = new Intent(this, SelectPictureActivity.class);
+                mPresenter.getAblumPicture(intent, mBitmaps);
                 break;
         }
     }
@@ -139,6 +138,16 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
         if (mBottomSheetDialog != null && mBottomSheetDialog.isShowing()) {
             mBottomSheetDialog.dismiss();
         }
+    }
+
+    @Override
+    public void jumpToForResult(Intent intent, int requestCode) {
+        startActivityForResult(intent, requestCode);
+    }
+
+    @Override
+    public void flushData(List<String> pictures) {
+        mAdapter.flushData(pictures);
     }
 
 
@@ -162,17 +171,6 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && data != null) {
-            if (requestCode == ABLUM_CODE) {
-                ArrayList<String> picture = data.getStringArrayListExtra("picture");
-                mAdapter.flushData(picture);
-            }
-            if (requestCode == CAMERA_CODE) {
-                Bitmap bitmap = BitmapFactory.decodeFile(mOutputImage.getAbsolutePath());
-
-//                mAdapter.getData().add(mOutputImage.getAbsolutePath());
-//                mAdapter.notifyItemInserted(mAdapter.getItemCount() + 1);
-            }
-        }
+        mPresenter.onActivityResult(requestCode, resultCode, data,RESULT_OK);
     }
 }

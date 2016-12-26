@@ -1,20 +1,20 @@
 package com.zjf.weike.presenter;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 
+import com.zjf.weike.App;
 import com.zjf.weike.R;
 import com.zjf.weike.presenter.base.BasePresenter;
-import com.zjf.weike.view.activity.SelectPictureActivity;
+import com.zjf.weike.util.LogUtil;
 import com.zjf.weike.view.viewimp.PublishViewImp;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import static com.zjf.weike.view.activity.PublishActivity.ABLUM_CODE;
 
 /**
  * @author :ZJF
@@ -22,6 +22,11 @@ import static com.zjf.weike.view.activity.PublishActivity.ABLUM_CODE;
  */
 
 public class PublishPresenter implements BasePresenter {
+
+    public static final int ABLUM_CODE = 1001;
+    public static final int CAMERA_CODE = 2002;
+    private File mOutputImage;
+    private boolean isAttached = false;
 
     private PublishViewImp mView;
 
@@ -34,10 +39,9 @@ public class PublishPresenter implements BasePresenter {
         mView.published();
     }
 
-    public void getAblumPicture(Activity activity, ArrayList<String> mBitmaps) {
-        Intent intent = new Intent(activity, SelectPictureActivity.class);
+    public void getAblumPicture(Intent intent, ArrayList<String> mBitmaps) {
         intent.putStringArrayListExtra("alreadhave", mBitmaps);
-        activity.startActivityForResult(intent, ABLUM_CODE);
+        mView.jumpToForResult(intent, ABLUM_CODE);
         mView.dimissBottomSheetDialog();
     }
 
@@ -45,10 +49,10 @@ public class PublishPresenter implements BasePresenter {
 
     }
 
-    public File startCamera(Activity activity, int count,int CAMERA_CODE) {
+    public void startCamera(File outputImage, int count) {
+        this.mOutputImage = outputImage;
         mView.dimissBottomSheetDialog();
         if (count < 9) {
-            File outputImage = new File(activity.getExternalCacheDir(), "output_image.jpg");
             try {
                 if (outputImage.exists()) {
                     outputImage.delete();
@@ -60,26 +64,40 @@ public class PublishPresenter implements BasePresenter {
             Uri imageUri = Uri.fromFile(outputImage);
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-            activity.startActivityForResult(intent, CAMERA_CODE);
-            return outputImage;
+            mView.jumpToForResult(intent, CAMERA_CODE);
         } else {
-            mView.showSnakBar(activity.getString(R.string.nomore), 1);
-            return null;
+            mView.showSnakBar(App.getInstance().getString(R.string.nomore), 1);
         }
     }
 
     @Override
     public void onViewAttached(Object view) {
-
+        isAttached = true;
     }
 
     @Override
     public void onViewDeached() {
-
+        isAttached = false;
     }
 
     @Override
     public void onDestroyed() {
+        isAttached = false;
+        mView = null;
+        if (mOutputImage != null) {
+            mOutputImage = null;
+        }
+    }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data, int resultOk) {
+        if (resultCode == resultOk && data != null) {
+            if (requestCode == ABLUM_CODE) {
+                ArrayList<String> picture = data.getStringArrayListExtra("picture");
+                mView.flushData(picture);
+            } else if (requestCode == CAMERA_CODE) {
+                Bitmap bitmap = BitmapFactory.decodeFile(mOutputImage.getAbsolutePath());
+                LogUtil.e(bitmap.toString().length() + "");
+            }
+        }
     }
 }

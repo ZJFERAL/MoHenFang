@@ -6,7 +6,7 @@ import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zjf.weike.App;
 import com.zjf.weike.R;
-import com.zjf.weike.imp.OnAsyncModelListener;
+import com.zjf.weike.impl.OnAsyncModelListener;
 import com.zjf.weike.model.SplashModel;
 import com.zjf.weike.model.modelimp.SplashModelImp;
 import com.zjf.weike.presenter.base.BasePresenter;
@@ -44,27 +44,25 @@ public class SplashPresenter implements BasePresenter<SplashViewImp> {
                 .subscribe(new Consumer<Permission>() {
                     @Override
                     public void accept(Permission permission) throws Exception {
-                        if (permission.granted) {
-                            switch (permission.name) {
-                                case Manifest.permission.READ_EXTERNAL_STORAGE:
-                                    requestPermission(Manifest.permission.ACCESS_COARSE_LOCATION);
-                                    break;
-                                case Manifest.permission.ACCESS_COARSE_LOCATION:
-                                    requestPermission(Manifest.permission.CAMERA);
-                                    break;
-                                case Manifest.permission.CAMERA:
-                                    requestPermission(Manifest.permission.READ_PHONE_STATE);
-                                    break;
-                                case Manifest.permission.READ_PHONE_STATE:
-                                    if (isAttached) {
+                        if (isAttached) {
+                            if (permission.granted) {
+                                switch (permission.name) {
+                                    case Manifest.permission.READ_EXTERNAL_STORAGE:
+                                        requestPermission(Manifest.permission.ACCESS_COARSE_LOCATION);
+                                        break;
+                                    case Manifest.permission.ACCESS_COARSE_LOCATION:
+                                        requestPermission(Manifest.permission.CAMERA);
+                                        break;
+                                    case Manifest.permission.CAMERA:
+                                        requestPermission(Manifest.permission.READ_PHONE_STATE);
+                                        break;
+                                    case Manifest.permission.READ_PHONE_STATE:
                                         mView.onAllPermissionPass();
-                                    }
-                                    break;
-                            }
-                        } else if (permission.shouldShowRequestPermissionRationale) {
-                            requestPermission(permissionName);
-                        } else {
-                            if (isAttached) {
+                                        break;
+                                }
+                            } else if (permission.shouldShowRequestPermissionRationale) {
+                                requestPermission(permissionName);
+                            } else {
                                 mView.showPermisssionDialog(permissionName, App.getInstance().getString(R.string.text_needpermission));
                             }
                         }

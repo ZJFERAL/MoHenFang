@@ -1,7 +1,7 @@
 package com.zjf.weike.presenter;
 
 import com.zjf.weike.bean.ImageFolder;
-import com.zjf.weike.imp.OnAsyncModelListener;
+import com.zjf.weike.impl.OnAsyncModelListener;
 import com.zjf.weike.model.SelectPictureAsyncModel;
 import com.zjf.weike.model.modelimp.SelectPictureAsyncModelImp;
 import com.zjf.weike.presenter.base.BasePresenter;

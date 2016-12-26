@@ -7,8 +7,8 @@ import android.view.MenuItem;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.umeng.analytics.MobclickAgent;
-import com.zjf.weike.imp.JumpInto;
-import com.zjf.weike.imp.JumpTo;
+import com.zjf.weike.impl.JumpInto;
+import com.zjf.weike.impl.JumpTo;
 
 public abstract class BaseActivity extends AppCompatActivity {
 

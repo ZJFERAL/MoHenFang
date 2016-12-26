@@ -1,6 +1,6 @@
 package com.zjf.weike.model.modelimp;
 
-import com.zjf.weike.imp.OnAsyncModelListener;
+import com.zjf.weike.impl.OnAsyncModelListener;
 
 /**
  * @author :ZJF

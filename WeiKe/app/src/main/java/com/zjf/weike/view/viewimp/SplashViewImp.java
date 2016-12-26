@@ -15,4 +15,8 @@ public interface SplashViewImp extends BaseViewImp {
 
     void onAllPermissionPass();
 
+    void showUpdataDialog();
+
+    void showForceUpdataDialog();
+
 }

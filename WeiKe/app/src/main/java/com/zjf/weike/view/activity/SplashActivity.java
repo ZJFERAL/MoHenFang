@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.view.WindowManager;
 
 import com.zjf.weike.R;
-import com.zjf.weike.imp.OnPermissionResultListener;
+import com.zjf.weike.impl.OnPermissionResultListener;
 import com.zjf.weike.presenter.SplashPresenter;
 import com.zjf.weike.util.DialogUtil;
 import com.zjf.weike.view.activity.base.MVPActivity;
@@ -51,6 +51,16 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
     @Override
     public void onAllPermissionPass() {
         mPresenter.requestVersionCode("1.00");
+    }
+
+    @Override
+    public void showUpdataDialog() {
+
+    }
+
+    @Override
+    public void showForceUpdataDialog() {
+
     }
 
     @Override

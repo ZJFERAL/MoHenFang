@@ -9,7 +9,7 @@ import android.provider.MediaStore;
 import com.zjf.weike.App;
 import com.zjf.weike.R;
 import com.zjf.weike.bean.ImageFolder;
-import com.zjf.weike.imp.OnAsyncModelListener;
+import com.zjf.weike.impl.OnAsyncModelListener;
 import com.zjf.weike.model.modelimp.SelectPictureAsyncModelImp;
 
 import java.io.File;

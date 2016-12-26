@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.CheckBox;
 
 import com.zjf.weike.R;
-import com.zjf.weike.imp.OnPictureSelectListener;
+import com.zjf.weike.impl.OnPictureSelectListener;
 import com.zjf.weike.view.activity.SelectPictureActivity;
 
 import java.util.ArrayList;

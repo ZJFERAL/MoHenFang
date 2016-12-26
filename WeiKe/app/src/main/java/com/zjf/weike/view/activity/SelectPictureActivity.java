@@ -22,7 +22,7 @@ import com.zjf.weike.adapter.CRecyclerViewViewHolder;
 import com.zjf.weike.adapter.SelectAblumAdapter;
 import com.zjf.weike.adapter.SelectPictureAdapter;
 import com.zjf.weike.bean.ImageFolder;
-import com.zjf.weike.imp.OnPictureSelectListener;
+import com.zjf.weike.impl.OnPictureSelectListener;
 import com.zjf.weike.presenter.SelectPicturePresenter;
 import com.zjf.weike.util.LogUtil;
 import com.zjf.weike.util.SnackBarUtil;

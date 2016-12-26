@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zjf.weike.imp.JumpInto;
-import com.zjf.weike.imp.JumpTo;
+import com.zjf.weike.impl.JumpInto;
+import com.zjf.weike.impl.JumpTo;
 
 /**
  * A simple {@link Fragment} subclass.

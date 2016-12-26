@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 
-import com.zjf.weike.imp.OnPermissionResultListener;
+import com.zjf.weike.impl.OnPermissionResultListener;
 
 /**
  * @author :ZJF

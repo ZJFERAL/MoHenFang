@@ -23,7 +23,8 @@ public class App extends Application {
         LogUtil.isDebug = true;
         String key = NativeUtil.getKey();
         MobclickAgent.startWithConfigure(
-                new MobclickAgent.UMAnalyticsConfig(this, key, "wandoujia", MobclickAgent.EScenarioType.E_UM_NORMAL));
+                new MobclickAgent.UMAnalyticsConfig(this,
+                        key, "wandoujia", MobclickAgent.EScenarioType.E_UM_NORMAL));
     }
 
     public static App getInstance() {

@@ -1,4 +1,4 @@
-package com.zjf.weike.imp;
+package com.zjf.weike.impl;
 
 /**
  * @author :ZJF
