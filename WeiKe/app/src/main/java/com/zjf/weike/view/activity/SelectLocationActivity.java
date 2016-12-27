@@ -69,7 +69,6 @@ public class SelectLocationActivity extends MVPActivity<SelectLocationPresenter>
     public void initVariables() {
         super.initVariables();
         mDialog = new ProgressDialog(this);
-        mDialog.setCancelable(false);
         mDialog.setTitle(getString(R.string.hint));
         mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mDialog.setMessage(getString(R.string.getlocation));

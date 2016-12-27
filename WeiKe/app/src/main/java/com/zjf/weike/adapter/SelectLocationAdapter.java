@@ -27,14 +27,13 @@ public class SelectLocationAdapter extends CRecyclerViewAdapter<PoiItem> {
     @Override
     protected void setConvertView(CRecyclerViewViewHolder holder, PoiItem item, int position) {
         holder.setText(R.id.item_name, item.getTitle());
+        holder.setImageResource(R.id.item_check,
+                R.drawable.ic_check_circle_white_24dp);
         if (title != null) {
             if (title.equals(item.getTitle())) {
                 holder.setImageResource(R.id.item_check,
                         R.drawable.ic_check_circle_yellow_400_24dp);
             }
-        } else {
-            holder.setImageResource(R.id.item_check,
-                    R.drawable.ic_check_circle_white_24dp);
         }
     }
 }
