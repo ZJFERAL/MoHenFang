@@ -4,6 +4,7 @@ import com.zjf.weike.impl.OnAsyncModelListener;
 import com.zjf.weike.model.modelimp.SplashModelImp;
 import com.zjf.weike.url.ApiService;
 import com.zjf.weike.util.RetrofitUtil;
+import com.zjf.weike.util.SC;
 
 import java.io.IOException;
 
@@ -27,9 +28,10 @@ public class SplashModel implements SplashModelImp {
 
     @Override
     public void getBackGround(final OnAsyncModelListener<String> listener) {
-        Retrofit client = RetrofitUtil.getClient("http://guolin.tech/");
+        Retrofit client = RetrofitUtil.getClient(SC.GULIN_BASE);
         ApiService url = client.create(ApiService.class);
-        url.getBackGround().subscribeOn(Schedulers.io())
+        url.getBackGround()
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<ResponseBody>() {
                     @Override

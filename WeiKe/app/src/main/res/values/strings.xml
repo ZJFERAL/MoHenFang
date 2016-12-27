@@ -62,5 +62,9 @@
     <string name="mustupdata">Your current version is too low, upgrade your application can continue to use</string>
     <string name="chooselocation">Choose location point</string>
     <string name="locationfailure">Get location failed</string>
+    <string name="downloadpicture">Download the A PICTURE A DAY</string>
+    <string name="downsuccess">DownLoad Success</string>
+    <string name="downfailure">DownLoad Failure</string>
+    <string name="picturefrom">the picture is from http://cn.bing.com</string>
 
 </resources>

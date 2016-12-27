@@ -11,9 +11,13 @@ import com.zjf.weike.impl.OnAsyncModelListener;
 import com.zjf.weike.model.SplashModel;
 import com.zjf.weike.model.modelimp.SplashModelImp;
 import com.zjf.weike.presenter.base.BasePresenter;
+import com.zjf.weike.util.LogUtil;
+import com.zjf.weike.util.SC;
 import com.zjf.weike.view.activity.GuideActivity;
 import com.zjf.weike.view.activity.MainActivity;
 import com.zjf.weike.view.viewimp.SplashViewImp;
+
+import java.util.Calendar;
 
 import io.reactivex.functions.Consumer;
 
@@ -40,20 +44,9 @@ public class SplashPresenter implements BasePresenter<SplashViewImp> {
     public void onViewAttached(SplashViewImp view) {
         isAttached = true;
         this.mView = view;
-        mModel.getBackGround(new OnAsyncModelListener<String>() {
-            @Override
-            public void onFailure(String msg, int type) {
-
-            }
-
-            @Override
-            public void onSuccess(String list) {
-                if (isAttached) {
-                    mView.setBackGround(list);
-                }
-            }
-        });
         requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        getBackGround();
     }
 
     public void requestPermission(final String permissionName) {
@@ -118,10 +111,14 @@ public class SplashPresenter implements BasePresenter<SplashViewImp> {
         });
     }
 
-    public void updata() {
+    public void updata(int type) {
         Intent intent = new Intent();
-        intent.setAction("com.zjf.weike.updata.broadcast");
-        mView.sendUpdataBroadcast(intent);
+        intent.setAction(SC.UPDATA_BROADCAST);
+        boolean close = false;
+        if (type == SC.FORCE_UPDATE) {
+            close = true;
+        }
+        mView.sendUpdataBroadcast(intent, close);
     }
 
     public void startApp(String code) {
@@ -144,4 +141,26 @@ public class SplashPresenter implements BasePresenter<SplashViewImp> {
         mModel = null;
     }
 
+    private void getBackGround() {
+        int date = mView.getSaveDate();
+        final int currentDate = Calendar.getInstance().get(Calendar.DATE);
+        if (currentDate != date) {
+            mModel.getBackGround(new OnAsyncModelListener<String>() {
+                @Override
+                public void onFailure(String msg, int type) {
+
+                }
+
+                @Override
+                public void onSuccess(String url) {
+                    if (isAttached) {
+                        mView.setBackGround(url);
+                        mView.saveDateAndBg(currentDate, url);
+                    }
+                }
+            });
+        } else {
+            mView.setBackGround(mView.getTodayBG());
+        }
+    }
 }

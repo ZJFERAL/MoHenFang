@@ -28,5 +28,11 @@ public interface SplashViewImp extends BaseViewImp {
 
     void exit();
 
-    void sendUpdataBroadcast(Intent intent);
+    void sendUpdataBroadcast(Intent intent,boolean close);
+
+    int getSaveDate();
+
+    String getTodayBG();
+
+    void saveDateAndBg(int date,String url);
 }

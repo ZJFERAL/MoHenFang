@@ -1,8 +1,13 @@
 package com.zjf.weike.presenter;
 
 import android.content.Context;
+import android.text.TextUtils;
 
+import com.zjf.weike.App;
 import com.zjf.weike.R;
+import com.zjf.weike.impl.OnAsyncModelListener;
+import com.zjf.weike.model.MainModel;
+import com.zjf.weike.model.modelimp.MainModelImp;
 import com.zjf.weike.presenter.base.BasePresenter;
 import com.zjf.weike.view.viewimp.MainViewImp;
 
@@ -15,9 +20,30 @@ public class MainPresenter implements BasePresenter<MainViewImp> {
 
     private long currentTime = 0;
     private MainViewImp mView;
+    private MainModelImp mModel;
+    private boolean isAttacded = false;
 
     public MainPresenter() {
+        mModel = new MainModel();
+    }
 
+    public void downLoadePicture(String url) {
+        if (TextUtils.isEmpty(url)) {
+            mView.showSnakBar(App.getStringRes(R.string.downfailure), 3);
+            return;
+        }
+        mModel.setUrl(url);
+        mModel.getData(new OnAsyncModelListener<String>() {
+            @Override
+            public void onFailure(String msg, int type) {
+                mView.showSnakBar(msg, type);
+            }
+
+            @Override
+            public void onSuccess(String list) {
+                mView.showSnakBar(list, 1);
+            }
+        });
     }
 
 
@@ -33,16 +59,20 @@ public class MainPresenter implements BasePresenter<MainViewImp> {
 
     @Override
     public void onViewAttached(MainViewImp view) {
+        isAttacded = true;
         this.mView = view;
+
     }
 
     @Override
     public void onViewDeached() {
-
+        isAttacded = false;
     }
 
     @Override
     public void onDestroyed() {
-
+        isAttacded = false;
+        mModel = null;
+        mView = null;
     }
 }

@@ -1,5 +1,7 @@
 package com.zjf.weike.view.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -13,6 +15,7 @@ import android.view.View;
 
 import com.zjf.weike.R;
 import com.zjf.weike.presenter.MainPresenter;
+import com.zjf.weike.util.SC;
 import com.zjf.weike.util.SnackBarUtil;
 import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.MainViewImp;
@@ -34,6 +37,14 @@ public class MainActivity extends MVPActivity<MainPresenter>
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
 
+    private SharedPreferences mPreferences;
+
+
+    @Override
+    public void initVariables() {
+        super.initVariables();
+        mPreferences = getSharedPreferences(SC.CONFIG, Context.MODE_PRIVATE);
+    }
 
     @Override
     public void initView() {
@@ -54,7 +65,7 @@ public class MainActivity extends MVPActivity<MainPresenter>
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpTo(MainActivity.this, PublishActivity.class,false);
+                jumpTo(MainActivity.this, PublishActivity.class, false);
             }
         });
     }
@@ -101,6 +112,9 @@ public class MainActivity extends MVPActivity<MainPresenter>
 
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.nav_download) {
+            String string = mPreferences.getString(SC.TODAY_BG, null);
+            mPresenter.downLoadePicture(string);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
