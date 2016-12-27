@@ -7,6 +7,7 @@ import android.provider.MediaStore;
 import com.zjf.weike.App;
 import com.zjf.weike.R;
 import com.zjf.weike.presenter.base.BasePresenter;
+import com.zjf.weike.util.SC;
 import com.zjf.weike.view.viewimp.PublishViewImp;
 
 import java.io.File;
@@ -43,7 +44,7 @@ public class PublishPresenter implements BasePresenter<PublishViewImp> {
     }
 
     public void getLoaction(Intent intent) {
-        mView.jumpToForResult(intent,LOCATION_CODE);
+        mView.jumpToForResult(intent, LOCATION_CODE);
     }
 
     public void startCamera(File outputImage, int count) {
@@ -98,6 +99,11 @@ public class PublishPresenter implements BasePresenter<PublishViewImp> {
             } else if (requestCode == CAMERA_CODE) {
                 String path = mOutputImage.getAbsolutePath();
                 mView.addCameraPicture(path);
+            } else if (requestCode == LOCATION_CODE) {
+                if (data != null) {
+                    String locationName = data.getStringExtra(SC.LOCATION_NAME);
+                    mView.setLoactionName(locationName);
+                }
             }
         }
     }

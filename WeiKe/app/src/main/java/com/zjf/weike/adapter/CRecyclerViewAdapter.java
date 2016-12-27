@@ -53,6 +53,7 @@ public abstract class CRecyclerViewAdapter<T> extends RecyclerView.Adapter<CRecy
      */
     public void setEmptyView(View emptyView) {
         this.mEmptyView = emptyView;
+        mEmptyView.setVisibility(View.GONE);
     }
 
     public List<T> getData() {
@@ -108,9 +109,9 @@ public abstract class CRecyclerViewAdapter<T> extends RecyclerView.Adapter<CRecy
     }
 
     private void setEmptyViewState(int count) {
-        if (count == 0 && mEmptyView.getVisibility() != View.VISIBLE) {
+        if (count == 0) {
             mEmptyView.setVisibility(View.VISIBLE);
-        } else if (mEmptyView.getVisibility() != View.GONE) {
+        } else{
             ViewPropertyAnimator alpha = mEmptyView.animate()
                     .setDuration(500)
                     .alpha(0);

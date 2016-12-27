@@ -21,4 +21,5 @@ public interface PublishViewImp extends BaseViewImp {
 
     void addCameraPicture(String path);
 
+    void setLoactionName(String name);
 }

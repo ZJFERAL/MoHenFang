@@ -20,4 +20,7 @@ public class SC {
     public static final String BING_BASE = "http://cn.bing.com/";
     public static final String GULIN_BASE = "http://guolin.tech/";
     public static final String IMAGE_DETIAL = "detial";
+    public static final String LOCATION_NAME = "LOCATION_NAME";
+    public static final String LOCATION_LONGITUDE = "LOCATION_LONGITUDE";
+    public static final String LOCATION_LATITUDE = "LOCATION_LATITUDE";
 }

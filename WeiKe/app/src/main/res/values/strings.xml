@@ -66,5 +66,5 @@
     <string name="downsuccess">DownLoad Success</string>
     <string name="downfailure">DownLoad Failure</string>
     <string name="picturefrom">the picture is from http://cn.bing.com</string>
-    <string name="getlocation">Is located</string>
+    <string name="getlocation">Is locating</string>
 </resources>

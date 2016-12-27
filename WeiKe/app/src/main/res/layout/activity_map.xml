@@ -6,7 +6,7 @@
     android:id="@+id/activity_map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zjf.weike.view.activity.MapActivity">
+    tools:context="com.zjf.weike.view.activity.SelectLocationActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,41 +22,49 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <com.amap.api.maps2d.MapView
-        android:id="@+id/map"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="250dp"
-        android:layout_marginTop="?attr/actionBarSize"/>
+        android:layout_marginTop="?attr/actionBarSize">
 
-    <FrameLayout
-        android:id="@+id/bottom_sheet"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:behavior_hideable="false"
-        app:behavior_peekHeight="200dp"
-        app:layout_behavior="@string/bottom_sheet_behavior">
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:elevation="4dp"
-            app:tabBackground="@color/colorPrimaryDark"
-            app:tabIndicatorColor="@color/colorPrimary"
-            app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/cardview_light_background"
-            app:tabTextColor="@color/color_tab"/>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewPager"
+        <com.amap.api.maps2d.MapView
+            android:id="@+id/map"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize">
+            android:layout_marginBottom="220dp"/>
 
-        </android.support.v4.view.ViewPager>
+        <FrameLayout
+            android:id="@+id/bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            app:behavior_hideable="false"
+            app:behavior_peekHeight="220dp"
+            app:layout_behavior="@string/bottom_sheet_behavior">
 
-    </FrameLayout>
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:tabBackground="@color/colorPrimaryDark"
+                app:tabIndicatorColor="@color/cardview_light_background"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="@color/cardview_light_background"
+                app:tabTextColor="@color/color_tab"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:background="@color/cardview_light_background">
+
+            </android.support.v4.view.ViewPager>
+
+
+        </FrameLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_done"

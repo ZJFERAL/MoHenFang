@@ -1,10 +1,12 @@
 package com.zjf.weike.view.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
@@ -20,14 +22,22 @@ import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.zjf.weike.R;
+import com.zjf.weike.adapter.TabAdapter;
+import com.zjf.weike.presenter.SelectLocationPresenter;
+import com.zjf.weike.util.SC;
 import com.zjf.weike.util.SnackBarUtil;
-import com.zjf.weike.view.activity.base.BaseActivity;
+import com.zjf.weike.view.activity.base.MVPActivity;
+import com.zjf.weike.view.fragment.POIFragment;
+import com.zjf.weike.view.viewimp.SelectLocationViewImp;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MapActivity extends BaseActivity implements LocationSource, AMapLocationListener {
+public class SelectLocationActivity extends MVPActivity<SelectLocationPresenter>
+        implements LocationSource, AMapLocationListener, SelectLocationViewImp {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -49,16 +59,22 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
     private AMapLocationClient mClient;
     private AMapLocationClientOption mOption;
     private ProgressDialog mDialog;
+    private TabAdapter mAdapter;
+    private List<Fragment> mFragments;
+    private double mLongitude;
+    private double mLatitude;
 
 
     @Override
     public void initVariables() {
+        super.initVariables();
         mDialog = new ProgressDialog(this);
         mDialog.setCancelable(false);
         mDialog.setTitle(getString(R.string.hint));
         mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mDialog.setMessage(getString(R.string.getlocation));
         mDialog.show();
+
     }
 
     @Override
@@ -76,7 +92,6 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
 
         aMap.setLocationSource(this);
         aMap.setMyLocationEnabled(true);
-        aMap.getUiSettings().setMyLocationButtonEnabled(true);
 
         MyLocationStyle myLocationStyle = new MyLocationStyle();
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory.
@@ -86,7 +101,6 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
 
     @Override
     public void setListener() {
-
     }
 
     @Override
@@ -109,16 +123,41 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
             if (amapLocation != null
                     && amapLocation.getErrorCode() == 0) {
                 mListener.onLocationChanged(amapLocation);
+                String code = amapLocation.getCityCode();
+                mLongitude = amapLocation.getLongitude();
+                mLatitude = amapLocation.getLatitude();
+                mPresenter.getData(code, mLatitude, mLongitude);
                 aMap.moveCamera(CameraUpdateFactory.zoomTo(18));
             } else {
-                SnackBarUtil.ShortSnackbar(mActivityMap, getString(R.string.locationfailure), 1).show();
+                showSnakBar(getString(R.string.locationfailure), 1);
             }
             mDialog.dismiss();
         }
     }
 
+    @Override
+    public void setViewPagerFagment(List<Fragment> fragments) {
+        this.mFragments = fragments;
+        mAdapter = new TabAdapter(getSupportFragmentManager()
+                , fragments, mPresenter.getTitle());
+        mTabLayout.setupWithViewPager(mViewPager);
+        mViewPager.setAdapter(mAdapter);
+    }
+
+
     @OnClick(R.id.fab_done)
     public void onClick() {
+        onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra(SC.LOCATION_NAME, mToolbar.getSubtitle().toString());
+        intent.putExtra(SC.LOCATION_LATITUDE, mLatitude);
+        intent.putExtra(SC.LOCATION_LONGITUDE, mLongitude);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     @Override
@@ -143,6 +182,7 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
         mMap.onPause();
     }
 
+
     @Override
     public void deactivate() {
         mListener = null;
@@ -153,10 +193,26 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
         mClient = null;
     }
 
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mMap.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public SelectLocationPresenter create() {
+        return new SelectLocationPresenter();
+    }
+
+    @Override
+    public void showSnakBar(String msg, int type) {
+        SnackBarUtil.ShortSnackbar(mActivityMap, msg, type).show();
+    }
+
+    public void setSubTitle(String title) {
+        mToolbar.setSubtitle(title);
+        for (Fragment fragment : mFragments) {
+            ((POIFragment) fragment).notifyCheck(title);
+        }
     }
 }

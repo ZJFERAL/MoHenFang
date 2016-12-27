@@ -87,7 +87,7 @@
         <service android:name=".service.UpdataService">
         </service>
 
-        <activity android:name=".view.activity.MapActivity">
+        <activity android:name=".view.activity.SelectLocationActivity">
         </activity>
         <activity
             android:name=".view.activity.ShowPictureActivity"

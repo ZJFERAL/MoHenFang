@@ -106,15 +106,14 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
 
     @OnClick({R.id.fab_publish, R.id.btn_addPhoto})
     public void onClick(View view) {
+        hideKeyBoard();
         switch (view.getId()) {
             case R.id.fab_publish:
                 // TODO 上传动态
                 mPresenter.publishInfo();
-                hideKeyBoard();
                 break;
             case R.id.btn_addPhoto:
                 mBottomSheetDialog.show();
-                hideKeyBoard();
                 break;
             case R.id.btn_camera:
                 File outputImage = new File(getExternalCacheDir(),
@@ -127,7 +126,6 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
             case R.id.btn_fromlocal:
                 Intent intent = new Intent(this, SelectPictureActivity.class);
                 mPresenter.getAblumPicture(intent, mBitmaps);
-                hideKeyBoard();
                 break;
         }
     }
@@ -159,6 +157,12 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
         mAdapter.addItemData(path);
     }
 
+    @Override
+    public void setLoactionName(String name) {
+        mLocation.setIcon(null);
+        mLocation.setTitle(name);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -170,7 +174,7 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_location) {
             mLocation = item;
-            mPresenter.getLoaction(new Intent(this, MapActivity.class));
+            mPresenter.getLoaction(new Intent(this, SelectLocationActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
