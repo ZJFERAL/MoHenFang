@@ -19,4 +19,5 @@ public class SC {
     public static final String TODAY_BG = "TODAY_BG";
     public static final String BING_BASE = "http://cn.bing.com/";
     public static final String GULIN_BASE = "http://guolin.tech/";
+    public static final String IMAGE_DETIAL = "detial";
 }

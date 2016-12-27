@@ -1,6 +1,7 @@
 package com.zjf.weike.presenter;
 
 import android.content.Context;
+import android.os.Environment;
 import android.text.TextUtils;
 
 import com.zjf.weike.App;
@@ -10,6 +11,8 @@ import com.zjf.weike.model.MainModel;
 import com.zjf.weike.model.modelimp.MainModelImp;
 import com.zjf.weike.presenter.base.BasePresenter;
 import com.zjf.weike.view.viewimp.MainViewImp;
+
+import java.io.File;
 
 /**
  * @author :ZJF
@@ -30,6 +33,13 @@ public class MainPresenter implements BasePresenter<MainViewImp> {
     public void downLoadePicture(String url) {
         if (TextUtils.isEmpty(url)) {
             mView.showSnakBar(App.getStringRes(R.string.downfailure), 3);
+            return;
+        }
+        String fileName = url.substring(url.lastIndexOf("/") + 1);
+        File file = new File(Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName);
+        if (file.exists()) {
+            mView.showSnakBar(App.getStringRes(R.string.downsuccess), 1);
             return;
         }
         mModel.setUrl(url);

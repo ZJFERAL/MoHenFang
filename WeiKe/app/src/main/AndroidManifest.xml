@@ -61,7 +61,6 @@
             android:screenOrientation="portrait">
         </activity>
 
-
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="996ddb83c31653a96d4a05a505e3b05f"/>
@@ -89,6 +88,11 @@
         </service>
 
         <activity android:name=".view.activity.MapActivity">
+        </activity>
+        <activity
+            android:name=".view.activity.ShowPictureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/transThems">
         </activity>
     </application>
 
