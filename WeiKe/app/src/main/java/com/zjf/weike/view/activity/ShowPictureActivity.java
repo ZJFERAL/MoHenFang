@@ -36,6 +36,7 @@ public class ShowPictureActivity extends BaseActivity {
     private float mScaleY;
     private float mDeltaX;
     private float mDeltaY;
+    private float src_width, src_height;
 
     @Override
     public void initVariables() {
@@ -43,6 +44,8 @@ public class ShowPictureActivity extends BaseActivity {
         if (intent != null) {
             mDetial = (ImageDetial) intent.getSerializableExtra(SC.IMAGE_DETIAL);
         }
+        src_height = getResources().getDisplayMetrics().heightPixels;
+        src_width = getResources().getDisplayMetrics().widthPixels;
 
     }
 
@@ -86,6 +89,7 @@ public class ShowPictureActivity extends BaseActivity {
     private void prepareScene() {
         int[] screenLocation = new int[2];
         //缩放到起始view大小
+
         mScaleX = mDetial.getWidth() * 1f / mImgShow.getWidth();
         mScaleY = mDetial.getHeight() * 1f / mImgShow.getHeight();
         mImgShow.setScaleX(mScaleX);
@@ -107,9 +111,12 @@ public class ShowPictureActivity extends BaseActivity {
                 .setInterpolator(new DecelerateInterpolator())
                 .translationX(0)
                 .translationY(0);
-        if (mScaleX < 1 || mScaleY < 1) {
+        if (mScaleX < 0.45 || mScaleY < 0.45) {
             animator.scaleX(1f)
                     .scaleY(1f);
+        } else {
+            animator.scaleX(mScaleX * 3.3f)
+                    .scaleY(mScaleY * 3.3f);
         }
         animator.start();
     }
@@ -120,11 +127,9 @@ public class ShowPictureActivity extends BaseActivity {
                 .setInterpolator(new DecelerateInterpolator())
                 .alpha(0f)
                 .translationX(mDeltaX)
-                .translationY(mDeltaY);
-        if (mScaleX < 1 || mScaleY < 1) {
-            animator.scaleX(mScaleX)
-                    .scaleY(mScaleY);
-        }
+                .translationY(mDeltaY)
+                .scaleX(mScaleX)
+                .scaleY(mScaleY);
         animator.start();
         animator.setListener(new Animator.AnimatorListener() {
             @Override

@@ -1,5 +1,6 @@
 package com.zjf.weike.view.activity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -47,11 +48,17 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
     private OnLocationChangedListener mListener;
     private AMapLocationClient mClient;
     private AMapLocationClientOption mOption;
+    private ProgressDialog mDialog;
 
 
     @Override
     public void initVariables() {
-
+        mDialog = new ProgressDialog(this);
+        mDialog.setCancelable(false);
+        mDialog.setTitle(getString(R.string.hint));
+        mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mDialog.setMessage(getString(R.string.getlocation));
+        mDialog.show();
     }
 
     @Override
@@ -67,8 +74,8 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
             aMap = mMap.getMap();
         }
 
-        aMap.setMyLocationEnabled(true);
         aMap.setLocationSource(this);
+        aMap.setMyLocationEnabled(true);
         aMap.getUiSettings().setMyLocationButtonEnabled(true);
 
         MyLocationStyle myLocationStyle = new MyLocationStyle();
@@ -90,7 +97,7 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
             mOption = new AMapLocationClientOption();
             mClient.setLocationListener(this);
             mOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-            mOption.setOnceLocation(true);
+            mOption.setOnceLocationLatest(true);
             mClient.setLocationOption(mOption);
             mClient.startLocation();
         }
@@ -106,6 +113,7 @@ public class MapActivity extends BaseActivity implements LocationSource, AMapLoc
             } else {
                 SnackBarUtil.ShortSnackbar(mActivityMap, getString(R.string.locationfailure), 1).show();
             }
+            mDialog.dismiss();
         }
     }
 

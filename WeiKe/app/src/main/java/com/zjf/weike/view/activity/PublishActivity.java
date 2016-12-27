@@ -1,5 +1,6 @@
 package com.zjf.weike.view.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.CoordinatorLayout;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -108,9 +110,11 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
             case R.id.fab_publish:
                 // TODO 上传动态
                 mPresenter.publishInfo();
+                hideKeyBoard();
                 break;
             case R.id.btn_addPhoto:
                 mBottomSheetDialog.show();
+                hideKeyBoard();
                 break;
             case R.id.btn_camera:
                 File outputImage = new File(getExternalCacheDir(),
@@ -123,6 +127,7 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
             case R.id.btn_fromlocal:
                 Intent intent = new Intent(this, SelectPictureActivity.class);
                 mPresenter.getAblumPicture(intent, mBitmaps);
+                hideKeyBoard();
                 break;
         }
     }
@@ -174,5 +179,11 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mPresenter.onActivityResult(requestCode, resultCode, data, RESULT_OK);
+    }
+
+    public void hideKeyBoard() {
+        InputMethodManager imm = (InputMethodManager) this
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mActivityPublish.getWindowToken(), 0);
     }
 }

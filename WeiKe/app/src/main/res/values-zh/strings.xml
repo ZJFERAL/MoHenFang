@@ -69,5 +69,6 @@
     <string name="downsuccess">下载成功</string>
     <string name="downfailure">下载失败</string>
     <string name="picturefrom">图片由 http://cn.bing.com必应 提供</string>
+    <string name="getlocation">正在定位</string>
 
 </resources>
