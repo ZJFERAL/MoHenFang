@@ -43,6 +43,10 @@ public class RegisterActivity extends MVPActivity<RegisterPresenter> implements 
     Toolbar mToolbar;
     @BindView(R.id.activity_register)
     CoordinatorLayout mActivityRegister;
+    @BindView(R.id.edit_nickName)
+    EditText mEditNickName;
+    @BindView(R.id.textInput_nickName)
+    TextInputLayout mTextInputNickName;
 
     @Override
     public void initVariables() {
@@ -70,7 +74,7 @@ public class RegisterActivity extends MVPActivity<RegisterPresenter> implements 
     }
 
     @Override
-    public void showSnakBar(String msg,int type) {
+    public void showSnakBar(String msg, int type) {
 
     }
 

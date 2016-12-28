@@ -6,5 +6,5 @@ package com.zjf.weike.impl;
  */
 
 public interface OnAsyncModel2SListener<T,V> extends OnAsyncModelListener<T> {
-    void onAction(V list);
+    void onAction(V msg);
 }

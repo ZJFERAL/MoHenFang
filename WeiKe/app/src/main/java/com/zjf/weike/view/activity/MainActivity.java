@@ -14,7 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.zjf.weike.R;
+import com.zjf.weike.impl.OnAsyncModelListener;
 import com.zjf.weike.presenter.MainPresenter;
+import com.zjf.weike.util.DialogUtil;
 import com.zjf.weike.util.SC;
 import com.zjf.weike.util.SnackBarUtil;
 import com.zjf.weike.view.activity.base.MVPActivity;
@@ -91,6 +93,20 @@ public class MainActivity extends MVPActivity<MainPresenter>
         int id = item.getItemId();
 
         if (id == R.id.action_search) {
+            DialogUtil.showSettingHostDialog(this, new OnAsyncModelListener<String>() {
+                @Override
+                public void onFailure(String msg, int type) {
+
+                }
+
+                @Override
+                public void onSuccess(String msg) {
+                    mPreferences
+                            .edit()
+                            .putString("http://" + SC.BASE_HOST, msg + "/")
+                            .apply();
+                }
+            });
             return true;
         }
 

@@ -47,14 +47,30 @@
                 android:hint="@string/edit_vcode"
                 android:imeOptions="actionNext"
                 android:inputType="number"
-                android:nextFocusDown="@+id/edit_pwd"
+                android:nextFocusDown="@+id/edit_nickName"
                 android:singleLine="true"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInput_nickName"
+            style="@style/style_inputText"
+            android:layout_below="@id/textInput_vcode"
+            android:layout_centerHorizontal="true">
+
+            <EditText
+                android:id="@id/edit_nickName"
+                style="@style/style_edit_password"
+                android:drawableLeft="@drawable/ic_people_outline_indigo_100_24dp"
+                android:hint="@string/edit_userName"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:nextFocusDown="@+id/edit_pwd"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInput_pwd"
             style="@style/style_inputText"
-            android:layout_below="@id/textInput_vcode"
+            android:layout_below="@id/textInput_nickName"
             android:layout_centerHorizontal="true">
 
             <EditText
@@ -80,21 +96,21 @@
 
         <Button
             android:id="@+id/btn_register"
+            style="@style/style_button"
             android:layout_below="@id/textInput_repwd"
-            android:text="@string/button_register"
-            style="@style/style_button"/>
+            android:text="@string/button_register"/>
 
         <Button
             android:id="@+id/btn_getVerifyCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:background="@drawable/ic_button_bg_theme"
             android:text="@string/button_getVcode"
             android:textAllCaps="false"
-            android:textColor="@color/cardview_light_background"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
+            android:textColor="@color/cardview_light_background"/>
 
     </RelativeLayout>
 

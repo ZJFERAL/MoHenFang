@@ -16,6 +16,7 @@ import com.zjf.weike.impl.OnAsyncModelListener;
 import com.zjf.weike.impl.OnPermissionResultListener;
 import com.zjf.weike.presenter.SplashPresenter;
 import com.zjf.weike.util.DialogUtil;
+import com.zjf.weike.util.RetrofitUtil;
 import com.zjf.weike.util.SC;
 import com.zjf.weike.util.SnackBarUtil;
 import com.zjf.weike.view.activity.base.MVPActivity;
@@ -40,6 +41,7 @@ public class SplashActivity extends MVPActivity<SplashPresenter> implements Spla
     public void initVariables() {
         super.initVariables();
         mPreferences = getSharedPreferences(SC.CONFIG, Context.MODE_PRIVATE);
+        RetrofitUtil.setBaseUrl(mPreferences.getString(SC.BASE_HOST, SC.DEFAULT_HOST));
     }
 
     /**

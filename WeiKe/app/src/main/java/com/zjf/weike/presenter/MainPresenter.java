@@ -37,7 +37,7 @@ public class MainPresenter implements BasePresenter<MainViewImp> {
         }
         String fileName = url.substring(url.lastIndexOf("/") + 1);
         File file = new File(Environment
-                .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName);
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), fileName);
         if (file.exists()) {
             mView.showSnakBar(App.getStringRes(R.string.downsuccess), 1);
             return;

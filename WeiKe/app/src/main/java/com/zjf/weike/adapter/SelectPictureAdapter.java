@@ -79,7 +79,7 @@ public class SelectPictureAdapter extends CRecyclerViewAdapter<String> {
                             mAlreadhave.remove(item);
                             box.setChecked(false);
                         } else {//原来是未选中
-                            if (mAlreadhave.size() < 9) {//还可以选
+                            if (mAlreadhave.size() < 5) {//还可以选
                                 mAlreadhave.add(item);
                                 box.setChecked(true);
                             } else {

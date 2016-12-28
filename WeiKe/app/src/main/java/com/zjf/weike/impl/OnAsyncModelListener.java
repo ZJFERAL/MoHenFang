@@ -7,8 +7,8 @@ package com.zjf.weike.impl;
 
 public interface OnAsyncModelListener<T> {
 
-    void onFailure(String msg,int type);
+    void onFailure(String msg, int type);
 
-    void onSuccess(T list);
+    void onSuccess(T msg);
 
 }

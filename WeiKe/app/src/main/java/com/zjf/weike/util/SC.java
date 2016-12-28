@@ -23,4 +23,6 @@ public class SC {
     public static final String LOCATION_NAME = "LOCATION_NAME";
     public static final String LOCATION_LONGITUDE = "LOCATION_LONGITUDE";
     public static final String LOCATION_LATITUDE = "LOCATION_LATITUDE";
+    public static final String BASE_HOST = "BASE_HOST";
+    public static final String DEFAULT_HOST = "http://10.0.182.154/";
 }

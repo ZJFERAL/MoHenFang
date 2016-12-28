@@ -11,7 +11,6 @@ import com.zjf.weike.impl.OnAsyncModelListener;
 import com.zjf.weike.model.SplashModel;
 import com.zjf.weike.model.modelimp.SplashModelImp;
 import com.zjf.weike.presenter.base.BasePresenter;
-import com.zjf.weike.util.LogUtil;
 import com.zjf.weike.util.SC;
 import com.zjf.weike.view.activity.GuideActivity;
 import com.zjf.weike.view.activity.MainActivity;
@@ -44,9 +43,8 @@ public class SplashPresenter implements BasePresenter<SplashViewImp> {
     public void onViewAttached(SplashViewImp view) {
         isAttached = true;
         this.mView = view;
-        requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
-
         getBackGround();
+        requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
     }
 
     public void requestPermission(final String permissionName) {
@@ -81,6 +79,8 @@ public class SplashPresenter implements BasePresenter<SplashViewImp> {
     }
 
     public void requestVersionCode(final String localCode) {
+        // TODO 待修改
+
         mModel.getData(new OnAsyncModelListener<String>() {
             @Override
             public void onFailure(String msg, int type) {

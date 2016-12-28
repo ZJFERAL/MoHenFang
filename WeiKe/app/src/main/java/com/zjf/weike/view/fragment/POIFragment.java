@@ -138,11 +138,10 @@ public class POIFragment extends BaseFragment {
     }
 
     public void notifyCheck(String chooseName) {
+        this.title = chooseName;
         if (mAdapter != null) {
             mAdapter.setTitle(chooseName);
             mAdapter.notifyDataSetChanged();
-        } else {
-            this.title = chooseName;
         }
     }
 

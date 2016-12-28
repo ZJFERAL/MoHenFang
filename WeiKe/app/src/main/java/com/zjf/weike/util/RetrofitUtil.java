@@ -15,6 +15,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitUtil {
 
+    private static String mBaseUrl = SC.DEFAULT_HOST;
+
+    public static void setBaseUrl(String baseUrl) {
+        mBaseUrl = baseUrl;
+    }
+
     private static OkHttpClient.Builder builder;
 
     static {
@@ -27,6 +33,16 @@ public class RetrofitUtil {
         return new Retrofit.Builder()
                 .client(builder.build())
                 .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+    }
+
+    public static Retrofit getClient() {
+
+        return new Retrofit.Builder()
+                .client(builder.build())
+                .baseUrl(mBaseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();

@@ -8,7 +8,7 @@
     <string name="app_guide_3">微客,有你更精彩！</string>
 
 
-    <string name="edit_userName">请输入用户名</string>
+    <string name="edit_userName">请输入昵称(不可改)</string>
     <string name="edit_pwd">请输入密码</string>
     <string name="btn_nologin">随便看看</string>
     <string name="edit_npwd">请输入新密码</string>
