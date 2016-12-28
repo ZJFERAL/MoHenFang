@@ -19,6 +19,10 @@ public class UpdataService extends IntentService {
         super(name);
     }
 
+    public UpdataService() {
+        super("");
+
+    }
 
     @Override
     protected void onHandleIntent(Intent intent) {

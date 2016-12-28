@@ -22,6 +22,7 @@ public abstract class MVPActivity<T extends BasePresenter> extends BaseActivity 
         return new PresenterLoader<>(this, this);
     }
 
+
     @Override
     public void onLoadFinished(Loader<T> loader, T data) {
         this.mPresenter = data;

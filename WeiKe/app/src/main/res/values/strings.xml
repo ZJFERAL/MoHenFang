@@ -68,4 +68,8 @@
     <string name="downfailure">DownLoad Failure</string>
     <string name="picturefrom">the picture is from http://cn.bing.com</string>
     <string name="getlocation">Is locating</string>
+    <string name="nickName">NickNane：</string>
+    <string name="tel">Tel：</string>
+    <string name="sethead">Set headIcon</string>
+    <string name="mydata">My Information</string>
 </resources>

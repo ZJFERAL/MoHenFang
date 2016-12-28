@@ -70,5 +70,8 @@
     <string name="downfailure">下载失败</string>
     <string name="picturefrom">图片由 http://cn.bing.com必应 提供</string>
     <string name="getlocation">正在定位</string>
-
+    <string name="nickName">昵称：</string>
+    <string name="tel">绑定手机：</string>
+    <string name="sethead">更换头像</string>
+    <string name="mydata">我的资料</string>
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_resethead"
+        android:title="@string/sethead"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_resetpwd"
+        android:title="@string/regetpwd"
+        app:showAsAction="never"/>
+</menu>

@@ -8,10 +8,12 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.zjf.weike.R;
 import com.zjf.weike.impl.OnAsyncModelListener;
@@ -21,6 +23,7 @@ import com.zjf.weike.util.SC;
 import com.zjf.weike.util.SnackBarUtil;
 import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.MainViewImp;
+import com.zjf.weike.widget.CircleImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,8 +41,13 @@ public class MainActivity extends MVPActivity<MainPresenter>
     NavigationView mNavView;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
 
     private SharedPreferences mPreferences;
+    private CircleImageView mHeadIcon;
+    private TextView mNickName;
+    private TextView mTel;
 
 
     @Override
@@ -58,7 +66,10 @@ public class MainActivity extends MVPActivity<MainPresenter>
                 this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
+        View mNavViewHeaderView = mNavView.getHeaderView(0);
+        mHeadIcon = (CircleImageView) mNavViewHeaderView.findViewById(R.id.imageView);
+        mNickName = (TextView) mNavViewHeaderView.findViewById(R.id.text_nickName);
+        mTel = (TextView) mNavViewHeaderView.findViewById(R.id.text_tel);
         mNavView.setNavigationItemSelectedListener(this);
     }
 
@@ -67,9 +78,19 @@ public class MainActivity extends MVPActivity<MainPresenter>
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // TODO 是否登录
                 jumpTo(MainActivity.this, PublishActivity.class, false);
             }
         });
+
+        mHeadIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO 是否登录
+                jumpTo(MainActivity.this, MyDataActivity.class, false);
+            }
+        });
+
     }
 
     @Override
@@ -152,4 +173,5 @@ public class MainActivity extends MVPActivity<MainPresenter>
     public void exit() {
         finish();
     }
+
 }

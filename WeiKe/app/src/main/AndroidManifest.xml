@@ -53,10 +53,6 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".view.activity.ResetPDataActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".view.activity.ReGetPasswordActivity"
             android:screenOrientation="portrait">
         </activity>
@@ -93,6 +89,10 @@
             android:name=".view.activity.ShowPictureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/transThems">
+        </activity>
+        <activity
+            android:name=".view.activity.MyDataActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
