@@ -114,10 +114,10 @@ public class GuideFragment extends BaseFragment {
                 jumpTo(getActivity(), MainActivity.class, true);
                 break;
             case R.id.btn_register:
-                jumpTo(getActivity(), RegisterActivity.class, false);
+                jumpTo(getActivity(), RegisterActivity.class, true);
                 break;
             case R.id.btn_login:
-                jumpTo(getActivity(), LoginActivity.class, false);
+                jumpTo(getActivity(), LoginActivity.class, true);
                 break;
         }
         saveConfig();

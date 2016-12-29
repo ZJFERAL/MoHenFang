@@ -6,4 +6,8 @@ package com.zjf.weike.view.viewimp;
  */
 
 public interface RegisterViewImp extends BaseViewImp{
+
+    void setBtnEnable();
+
+    void registerSuccess();
 }

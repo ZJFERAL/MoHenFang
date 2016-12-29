@@ -1,8 +1,12 @@
 package com.zjf.weike.url;
 
+import com.zjf.weike.bean.BaseBean;
+
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
@@ -19,4 +23,13 @@ public interface ApiService {
     @Streaming
     @GET
     Observable<ResponseBody> downloadFile(@Url String url);
+
+    @POST(value = "sms")
+    Observable<BaseBean> getVCode(@Query("phone") long phone);
+
+    @POST(value = "users")
+    Observable<BaseBean> register(@Query("phone") String phone,
+                                  @Query("password") String pwd,
+                                  @Query("nick_name") String nickName,
+                                  @Query("vcode") String vCode);
 }

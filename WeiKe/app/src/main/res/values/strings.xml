@@ -47,7 +47,7 @@
     <string name="progressdiolog">In trying to load...</string>
     <string name="hint">Hint</string>
     <string name="selectpicture">Select picture</string>
-    <string name="selectnum_half">/9</string>
+    <string name="selectnum_half">/5</string>
     <string name="selectnum_hint">Choose </string>
     <string name="nosdcard">No SD card</string>
     <string name="ninepicture">Can not choose more</string>
@@ -72,4 +72,11 @@
     <string name="tel">Tel：</string>
     <string name="sethead">Set headIcon</string>
     <string name="mydata">My Information</string>
+    <string name="errorphone">Worry Phone Num</string>
+    <string name="pwdtdiff">Passwords don\'t match</string>
+    <string name="errorvcode">Verification code error</string>
+    <string name="registersuccess">Register Success</string>
+    <string name="registerfailure">Register Failure</string>
+    <string name="loginrightnow">Login right now</string>
+
 </resources>

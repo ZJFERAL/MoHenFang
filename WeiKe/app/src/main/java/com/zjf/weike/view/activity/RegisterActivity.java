@@ -1,6 +1,10 @@
 package com.zjf.weike.view.activity;
 
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -9,6 +13,8 @@ import android.widget.EditText;
 
 import com.zjf.weike.R;
 import com.zjf.weike.presenter.RegisterPresenter;
+import com.zjf.weike.util.SC;
+import com.zjf.weike.util.SnackBarUtil;
 import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.RegisterViewImp;
 
@@ -75,7 +81,7 @@ public class RegisterActivity extends MVPActivity<RegisterPresenter> implements 
 
     @Override
     public void showSnakBar(String msg, int type) {
-
+        SnackBarUtil.ShortSnackbar(mActivityRegister, msg, type).show();
     }
 
 
@@ -83,9 +89,57 @@ public class RegisterActivity extends MVPActivity<RegisterPresenter> implements 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_getVerifyCode:
+                mPresenter.getVCode(mEditPhone.getText().toString().trim());
                 break;
             case R.id.btn_register:
+                mPresenter.register(
+                        mEditPhone.getText().toString().trim(),
+                        mEditVcode.getText().toString().trim(),
+                        mEditNickName.getText().toString().trim(),
+                        mEditPwd.getText().toString().trim(),
+                        mEditRepwd.getText().toString().trim()
+                );
                 break;
         }
+    }
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what > 0) {
+                msg.what--;
+                mBtnGetVerifyCode.setText(msg.what + "");
+                mHandler.sendEmptyMessageDelayed(msg.what, 1000);
+            } else {
+                mBtnGetVerifyCode.setText(getString(R.string.button_getVcode));
+                mBtnGetVerifyCode.setEnabled(true);
+            }
+        }
+    };
+
+    @Override
+    public void setBtnEnable() {
+        mHandler.sendEmptyMessage(60);
+        mBtnGetVerifyCode.setEnabled(false);
+    }
+
+    @Override
+    public void registerSuccess() {
+        Snackbar snackbar = SnackBarUtil.
+                LongSnackbar(mActivityRegister,
+                        getString(R.string.registersuccess), 1);
+        snackbar.setAction("", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString(SC.USER_NAME, mEditPhone.getText().toString().trim());
+                bundle.putString(SC.USER_PWD, mEditPwd.getText().toString().trim());
+                jumpTo(RegisterActivity.this,
+                        LoginActivity.class,
+                        bundle, true);
+            }
+        });
+        snackbar.show();
     }
 }

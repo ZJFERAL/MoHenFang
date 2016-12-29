@@ -74,4 +74,10 @@
     <string name="tel">绑定手机：</string>
     <string name="sethead">更换头像</string>
     <string name="mydata">我的资料</string>
+    <string name="errorphone">手机号不正确</string>
+    <string name="pwdtdiff">两次密码不一致</string>
+    <string name="errorvcode">验证码错误</string>
+    <string name="registersuccess">注册成功</string>
+    <string name="registerfailure">注册失败</string>
+    <string name="loginrightnow">立即登录</string>
 </resources>
