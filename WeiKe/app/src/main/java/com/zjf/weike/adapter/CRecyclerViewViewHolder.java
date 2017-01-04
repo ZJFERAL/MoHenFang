@@ -42,6 +42,11 @@ public class CRecyclerViewViewHolder extends RecyclerView.ViewHolder {
         return holder;
     }
 
+    public static CRecyclerViewViewHolder createViewHolder(Context context,  View itemView, int type) {
+        CRecyclerViewViewHolder holder = new CRecyclerViewViewHolder(context, itemView, type);
+        return holder;
+    }
+
     public <T extends View> T getView(int viewId) {
         View view = mViews.get(viewId);
         if (view == null) {
