@@ -3,13 +3,13 @@ package com.zjf.weike.view.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.widget.FrameLayout;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -47,12 +47,12 @@ public class SelectLocationActivity extends MVPActivity<SelectLocationPresenter>
     TabLayout mTabLayout;
     @BindView(R.id.viewPager)
     ViewPager mViewPager;
-    @BindView(R.id.bottom_sheet)
-    FrameLayout mBottomSheet;
     @BindView(R.id.fab_done)
     FloatingActionButton mFabDone;
     @BindView(R.id.activity_map)
     CoordinatorLayout mActivityMap;
+    @BindView(R.id.collapsingToolbarLayout)
+    CollapsingToolbarLayout mCollapsingToolbarLayout;
 
     private AMap aMap;//定义一个地图对象
     private OnLocationChangedListener mListener;
@@ -126,7 +126,7 @@ public class SelectLocationActivity extends MVPActivity<SelectLocationPresenter>
                 mLongitude = amapLocation.getLongitude();
                 mLatitude = amapLocation.getLatitude();
                 mPresenter.getData(code, mLatitude, mLongitude);
-                aMap.moveCamera(CameraUpdateFactory.zoomTo(18));
+                aMap.moveCamera(CameraUpdateFactory.zoomTo(15));
             } else {
                 showSnakBar(getString(R.string.locationfailure), 1);
             }
@@ -152,7 +152,7 @@ public class SelectLocationActivity extends MVPActivity<SelectLocationPresenter>
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();
-        intent.putExtra(SC.LOCATION_NAME, mToolbar.getSubtitle().toString());
+        intent.putExtra(SC.LOCATION_NAME, mCollapsingToolbarLayout.getTitle().toString());
         intent.putExtra(SC.LOCATION_LATITUDE, mLatitude);
         intent.putExtra(SC.LOCATION_LONGITUDE, mLongitude);
         setResult(RESULT_OK, intent);
@@ -209,7 +209,7 @@ public class SelectLocationActivity extends MVPActivity<SelectLocationPresenter>
     }
 
     public void setSubTitle(String title) {
-        mToolbar.setSubtitle(title);
+        mCollapsingToolbarLayout.setTitle(title);
         for (Fragment fragment : mFragments) {
             ((POIFragment) fragment).notifyCheck(title);
         }

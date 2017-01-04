@@ -25,7 +25,7 @@ public interface ApiService {
     Observable<ResponseBody> downloadFile(@Url String url);
 
     @POST(value = "sms")
-    Observable<BaseBean> getVCode(@Query("phone") long phone);
+    Observable<BaseBean> getVCode(@Query("phone") String phone);
 
     @POST(value = "users")
     Observable<BaseBean> register(@Query("phone") String phone,

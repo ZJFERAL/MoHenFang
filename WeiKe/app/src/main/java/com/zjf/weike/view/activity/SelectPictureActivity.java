@@ -17,8 +17,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.zjf.weike.R;
-import com.zjf.weike.adapter.CRecyclerViewAdapter;
-import com.zjf.weike.adapter.CRecyclerViewViewHolder;
 import com.zjf.weike.adapter.SelectAblumAdapter;
 import com.zjf.weike.adapter.SelectPictureAdapter;
 import com.zjf.weike.bean.ImageFolder;
@@ -28,6 +26,7 @@ import com.zjf.weike.util.LogUtil;
 import com.zjf.weike.util.SnackBarUtil;
 import com.zjf.weike.view.activity.base.MVPActivity;
 import com.zjf.weike.view.viewimp.SelectPictureViewImp;
+import com.zjf.weike.impl.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,18 +112,10 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
                                 + num + getString(R.string.selectnum_half));
             }
         });
-        mPictureAdapter.setOnItemClickListener(new CRecyclerViewAdapter.OnItemClickListener<String>() {
+        mRecyclerViewFolder.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, CRecyclerViewViewHolder holder, String item) {
-
-            }
-
-        });
-        mAblumAdapter.setOnItemClickListener(new CRecyclerViewAdapter.OnItemClickListener<ImageFolder>() {
-
-            @Override
-            public void onItemClick(View view, CRecyclerViewViewHolder holder, ImageFolder item) {
-                String dir = item.getDir();
+            public void onItemClick(View view, int position) {
+                String dir = mFolders.get(position).getDir();
                 mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 if (currentFolder.equals(dir)) {
                     return;
@@ -134,7 +125,12 @@ public class SelectPictureActivity extends MVPActivity<SelectPicturePresenter> i
                     mDialog.show();
                 }
             }
-        });
+
+            @Override
+            public void onLongClick(View view, int posotion) {
+
+            }
+        }));
     }
 
     @Override

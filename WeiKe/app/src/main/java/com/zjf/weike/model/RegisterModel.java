@@ -23,7 +23,7 @@ public class RegisterModel implements RegisterModelImp {
     public void getVCode(String phoneNum, final OnAsyncModelListener<String> listener) {
         Retrofit client = RetrofitUtil.getClient();
         ApiService service = client.create(ApiService.class);
-        service.getVCode(Long.parseLong(phoneNum))
+        service.getVCode(phoneNum)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<BaseBean>() {
@@ -39,7 +39,6 @@ public class RegisterModel implements RegisterModelImp {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        LogUtil.e("456");
                     }
                 });
     }

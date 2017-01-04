@@ -17,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.zjf.weike.App;
 import com.zjf.weike.R;
 import com.zjf.weike.adapter.PhotoAdapter;
 import com.zjf.weike.presenter.PublishPresenter;
@@ -159,8 +160,13 @@ public class PublishActivity extends MVPActivity<PublishPresenter> implements Pu
 
     @Override
     public void setLoactionName(String name) {
-        mLocation.setIcon(null);
-        mLocation.setTitle(name);
+        if (App.getStringRes(R.string.chooselocation).equals(name)) {
+            mLocation.setIcon(getResources().getDrawable(R.drawable.ic_add_location_white_24dp));
+            mLocation.setTitle(null);
+        } else {
+            mLocation.setIcon(null);
+            mLocation.setTitle(name);
+        }
     }
 
 

@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
@@ -17,14 +16,14 @@ import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.zjf.weike.App;
 import com.zjf.weike.R;
-import com.zjf.weike.adapter.CRecyclerViewAdapter;
-import com.zjf.weike.adapter.CRecyclerViewViewHolder;
 import com.zjf.weike.adapter.SelectLocationAdapter;
+import com.zjf.weike.impl.RecyclerItemClickListener;
 import com.zjf.weike.view.activity.SelectLocationActivity;
 import com.zjf.weike.view.fragment.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,14 +59,13 @@ public class POIFragment extends BaseFragment {
     }
 
     private RecyclerView mRecyclerView;
-    private TextView mEmptyView;
     private SelectLocationAdapter mAdapter;
     private List<PoiItem> mPoiItems;
 
     @Override
     public void initVariables() {
         mQuery = new PoiSearch.Query("", poiType, cityCode);
-        mQuery.setPageSize(8);// 设置每页最多返回多少条poiitem
+        mQuery.setPageSize(15);// 设置每页最多返回多少条poiitem
         mQuery.setPageNum(currentPage);//设置查询页码
         mSearch = new PoiSearch(getContext(), mQuery);
         mSearch.setBound(new PoiSearch.SearchBound(new LatLonPoint(latitude,
@@ -84,11 +82,8 @@ public class POIFragment extends BaseFragment {
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_poi, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        mEmptyView = (TextView) view.findViewById(R.id.emptyView);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(),
-                LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(manager);
-        mAdapter.setEmptyView(mEmptyView);
         mRecyclerView.setAdapter(mAdapter);
 
         return view;
@@ -123,12 +118,17 @@ public class POIFragment extends BaseFragment {
             }
         });
 
-        mAdapter.setOnItemClickListener(new CRecyclerViewAdapter.OnItemClickListener<PoiItem>() {
+        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, CRecyclerViewViewHolder holder, PoiItem item) {
-                ((SelectLocationActivity) getActivity()).setSubTitle(item.getTitle());
+            public void onItemClick(View view, int position) {
+                ((SelectLocationActivity) getActivity()).setSubTitle(mPoiItems.get(position).getTitle());
             }
-        });
+
+            @Override
+            public void onLongClick(View view, int posotion) {
+
+            }
+        }));
 
     }
 
