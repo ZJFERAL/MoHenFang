@@ -26,4 +26,5 @@ public class SC {
     public static final String BASE_HOST = "BASE_HOST";
     public static final String DEFAULT_HOST = "http://10.0.182.132/";
     public static final String TOKEN = "USERTOKEN";
+    public static final String GANKIO_BASE = "http://gank.io/api/data/";
 }

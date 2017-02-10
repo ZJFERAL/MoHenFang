@@ -38,14 +38,7 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="27sp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:paddingBottom="20dp"
-            android:text="@string/app_copy"
-            android:textColor="@color/color_black"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

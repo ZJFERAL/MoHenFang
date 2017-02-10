@@ -94,6 +94,8 @@
             android:name=".view.activity.MyDataActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".view.activity.WebViewActivity">
+        </activity>
     </application>
 
 </manifest>

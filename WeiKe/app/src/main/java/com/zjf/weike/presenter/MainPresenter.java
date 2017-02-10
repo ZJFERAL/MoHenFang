@@ -2,6 +2,8 @@ package com.zjf.weike.presenter;
 
 import android.content.Context;
 import android.os.Environment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 
 import com.zjf.weike.App;
@@ -10,6 +12,7 @@ import com.zjf.weike.impl.OnAsyncModelListener;
 import com.zjf.weike.model.MainModel;
 import com.zjf.weike.model.modelimp.MainModelImp;
 import com.zjf.weike.presenter.base.BasePresenter;
+import com.zjf.weike.view.fragment.GankFragment;
 import com.zjf.weike.view.viewimp.MainViewImp;
 
 import java.io.File;
@@ -25,6 +28,7 @@ public class MainPresenter implements BasePresenter<MainViewImp> {
     private MainViewImp mView;
     private MainModelImp mModel;
     private boolean isAttacded = false;
+    private int currentFragmentIndex = 0;
 
     public MainPresenter() {
         mModel = new MainModel();
@@ -66,6 +70,30 @@ public class MainPresenter implements BasePresenter<MainViewImp> {
             mView.exit();
         }
     }
+
+    public void onSwichFragment(int targetIndex, FragmentManager manager, int containerId) {
+
+        if (targetIndex == currentFragmentIndex) {
+            return;
+        }
+        GankFragment fragment = mModel.getTargetFragment(targetIndex);
+        GankFragment currentFragment = mModel.getTargetFragment(currentFragmentIndex);
+        FragmentTransaction transaction = manager.beginTransaction();
+        if (fragment.isAdded()) {
+            transaction.show(fragment).hide(currentFragment).commit();
+        } else {
+            transaction.hide(currentFragment).add(containerId, fragment).commit();
+        }
+        currentFragmentIndex = targetIndex;
+    }
+
+    public void addFirstFragment(FragmentManager manager, int containerId) {
+        if (mModel.getTargetFragment(0).isAdded()) {
+            return;
+        }
+        manager.beginTransaction().add(containerId, mModel.getTargetFragment(0)).commit();
+    }
+
 
     @Override
     public void onViewAttached(MainViewImp view) {

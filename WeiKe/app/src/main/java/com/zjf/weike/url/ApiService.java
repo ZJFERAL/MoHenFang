@@ -1,6 +1,7 @@
 package com.zjf.weike.url;
 
 import com.zjf.weike.bean.BaseBean;
+import com.zjf.weike.bean.GankBean;
 
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
@@ -32,4 +33,6 @@ public interface ApiService {
                                   @Query("password") String pwd,
                                   @Query("nick_name") String nickName,
                                   @Query("vcode") String vCode);
+    @GET
+    Observable<GankBean> getData(@Url String url);
 }

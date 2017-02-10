@@ -24,12 +24,4 @@
         app:ci_background="@color/color_indicator_bg"
         app:ci_selected_background="@color/color_indicator_selected_bg"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:gravity="center"
-        android:paddingBottom="4dp"
-        android:text="@string/app_copy"
-        android:textColor="@color/cardview_light_background"/>
 </FrameLayout>

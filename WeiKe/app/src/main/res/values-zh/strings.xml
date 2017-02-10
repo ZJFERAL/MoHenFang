@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">微客</string>
-    <string name="app_copy">\@Copyright(C)2016 超级火</string>
+    <string name="app_name">Gank.io</string>
     <string name="app_guide">\n沟通·了解·交流</string>
     <string name="app_guide_">沟通·了解·交流</string>
     <string name="app_guide_2">随时随地，发现新鲜事</string>
@@ -24,9 +23,9 @@
     <string name="text_threeLogin">第三方合作登陆</string>
     <string name="text_needpermission">的必要权限</string>
     <string name="pressTwiceExit">再按一次退出</string>
-    <string name="alldynamic">全部动态</string>
-    <string name="mydynamic">我发布的</string>
-    <string name="frienddynamic">好友动态</string>
+    <string name="alldynamic">Android</string>
+    <string name="mydynamic">Web</string>
+    <string name="frienddynamic">iOS</string>
     <string name="about">关于</string>
     <string name="feedback">反馈</string>
     <string name="share">分享</string>
@@ -80,4 +79,5 @@
     <string name="registersuccess">注册成功</string>
     <string name="registerfailure">注册失败</string>
     <string name="loginrightnow">立即登录</string>
+    <string name="nodata">暂无数据</string>
 </resources>

@@ -8,17 +8,13 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.zjf.weike.R;
-import com.zjf.weike.impl.OnAsyncModelListener;
 import com.zjf.weike.presenter.MainPresenter;
-import com.zjf.weike.util.DialogUtil;
 import com.zjf.weike.util.SC;
 import com.zjf.weike.util.SnackBarUtil;
 import com.zjf.weike.view.activity.base.MVPActivity;
@@ -41,8 +37,7 @@ public class MainActivity extends MVPActivity<MainPresenter>
     NavigationView mNavView;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
-    @BindView(R.id.recyclerView)
-    RecyclerView mRecyclerView;
+
 
     private SharedPreferences mPreferences;
     private CircleImageView mHeadIcon;
@@ -60,7 +55,7 @@ public class MainActivity extends MVPActivity<MainPresenter>
     public void initView() {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mToolbar.setTitle(getResources().getString(R.string.app_name));
+        mToolbar.setTitle(getResources().getString(R.string.alldynamic));
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
@@ -103,35 +98,9 @@ public class MainActivity extends MVPActivity<MainPresenter>
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == R.id.action_search) {
-            DialogUtil.showSettingHostDialog(this, new OnAsyncModelListener<String>() {
-                @Override
-                public void onFailure(String msg, int type) {
-
-                }
-
-                @Override
-                public void onSuccess(String msg) {
-                    mPreferences
-                            .edit()
-                            .putString("http://" + SC.BASE_HOST, msg + "/")
-                            .apply();
-                }
-            });
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    protected void onStart() {
+        super.onStart();
+        mPresenter.addFirstFragment(getSupportFragmentManager(), R.id.container);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -139,12 +108,15 @@ public class MainActivity extends MVPActivity<MainPresenter>
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_all) {
-
-        } else if (id == R.id.nav_my) {
-
-        } else if (id == R.id.nav_friend) {
-
+        if (id == R.id.android) {
+            mPresenter.onSwichFragment(0, getSupportFragmentManager(), R.id.container);
+            mToolbar.setTitle(getResources().getString(R.string.alldynamic));
+        } else if (id == R.id.ios) {
+            mPresenter.onSwichFragment(1, getSupportFragmentManager(), R.id.container);
+            mToolbar.setTitle(getResources().getString(R.string.frienddynamic));
+        } else if (id == R.id.web) {
+            mPresenter.onSwichFragment(2, getSupportFragmentManager(), R.id.container);
+            mToolbar.setTitle(getResources().getString(R.string.mydynamic));
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

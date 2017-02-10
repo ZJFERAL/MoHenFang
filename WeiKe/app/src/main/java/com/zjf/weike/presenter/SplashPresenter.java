@@ -13,6 +13,7 @@ import com.zjf.weike.model.modelimp.SplashModelImp;
 import com.zjf.weike.presenter.base.BasePresenter;
 import com.zjf.weike.util.SC;
 import com.zjf.weike.view.activity.GuideActivity;
+import com.zjf.weike.view.activity.MainActivity;
 import com.zjf.weike.view.viewimp.SplashViewImp;
 
 import java.util.Calendar;
@@ -124,8 +125,7 @@ public class SplashPresenter implements BasePresenter<SplashViewImp> {
         if (mView.isFirstStart(code)) {
             mView.startApp(GuideActivity.class, 3000);
         } else {
-            //mView.startApp(MainActivity.class, 3000);
-            mView.startApp(GuideActivity.class, 3000);
+            mView.startApp(MainActivity.class, 3000);
         }
     }
 

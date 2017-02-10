@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">WeBlog</string>
-    <string name="app_copy">\@Copyright(C)2016 superfire</string>
+    <string name="app_name">Gank.io</string>
     <string name="app_guide">\ E·U·C</string>
     <string name="app_guide_">Exchange·Understand·Communicate</string>
     <string name="app_guide_2">Anytime, anywhere, found a new thing</string>
@@ -22,9 +21,9 @@
     <string name="text_threeLogin">The third party cooperation</string>
     <string name="text_needpermission">,the necessary permissions.</string>
     <string name="pressTwiceExit">Press again to the exit</string>
-    <string name="alldynamic">All dynamic</string>
-    <string name="mydynamic">My dynamic</string>
-    <string name="frienddynamic">Friends dynamic</string>
+    <string name="alldynamic">Android</string>
+    <string name="mydynamic">Web</string>
+    <string name="frienddynamic">iOS</string>
     <string name="about">About</string>
     <string name="feedback">Feedback</string>
     <string name="share">Share</string>
@@ -78,5 +77,7 @@
     <string name="registersuccess">Register Success</string>
     <string name="registerfailure">Register Failure</string>
     <string name="loginrightnow">Login right now</string>
+    <string name="nodata">No Data</string>
+
 
 </resources>
