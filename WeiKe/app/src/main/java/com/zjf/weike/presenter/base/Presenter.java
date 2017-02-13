@@ -1,9 +1,5 @@
 package com.zjf.weike.presenter.base;
 
-/**
- * @author :ZJF
- * @version : 2016-12-28 下午 4:13
- */
 
 public abstract class Presenter<T> implements BasePresenter<T> {
 
