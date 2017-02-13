@@ -65,11 +65,11 @@ public class POIFragment extends BaseFragment {
     @Override
     public void initVariables() {
         mQuery = new PoiSearch.Query("", poiType, cityCode);
-        mQuery.setPageSize(15);// 设置每页最多返回多少条poiitem
-        mQuery.setPageNum(currentPage);//设置查询页码
+        mQuery.setPageSize(15);
+        mQuery.setPageNum(currentPage);
         mSearch = new PoiSearch(getContext(), mQuery);
         mSearch.setBound(new PoiSearch.SearchBound(new LatLonPoint(latitude,
-                longitude), 800));//设置周边搜索的中心点以及半径
+                longitude), 800));
         mPoiItems = new ArrayList<>();
         mAdapter = new SelectLocationAdapter(getContext(), mPoiItems, R.layout.loaction_item);
         if (TextUtils.isEmpty(title)) {

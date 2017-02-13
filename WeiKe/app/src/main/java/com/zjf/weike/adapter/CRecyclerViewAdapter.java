@@ -128,14 +128,14 @@ public abstract class CRecyclerViewAdapter<T> extends RecyclerView.Adapter<CRecy
         if (itemView != null) {
             if (mManager instanceof StaggeredGridLayoutManager) {
                 ViewGroup.LayoutParams targetParams = itemView.getLayoutParams();
-                StaggeredGridLayoutManager.LayoutParams StaggerLayoutParams;
+                StaggeredGridLayoutManager.LayoutParams staggerLayoutParams;
                 if (targetParams != null) {
-                    StaggerLayoutParams = new StaggeredGridLayoutManager.LayoutParams(targetParams.width, targetParams.height);
+                    staggerLayoutParams = new StaggeredGridLayoutManager.LayoutParams(targetParams.width, targetParams.height);
                 } else {
-                    StaggerLayoutParams = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    staggerLayoutParams = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 }
-                StaggerLayoutParams.setFullSpan(true);
-                itemView.setLayoutParams(StaggerLayoutParams);
+                staggerLayoutParams.setFullSpan(true);
+                itemView.setLayoutParams(staggerLayoutParams);
             }
             holder = CRecyclerViewViewHolder.createViewHolder(mContext, itemView, viewType);
         }
